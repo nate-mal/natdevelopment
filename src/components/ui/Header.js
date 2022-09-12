@@ -84,7 +84,7 @@ const Header = (props) => {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
               onMouseEnter={handleMenuOpen}
-              onClick={handleMenuClose}
+              onClick={handleMenuOpen}
               component={Link}
               to="/services"
               sx={tabsStyle}
@@ -121,7 +121,6 @@ const Header = (props) => {
             Free Estimate
           </Button>
         </Toolbar>
-
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
