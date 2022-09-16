@@ -40,9 +40,9 @@ const Header = (props) => {
       setValue(4);
   }, [value]);
   const services = [
-    "Custom Software Development",
-    "Mobile App Development",
-    "Website Development",
+    { name: "Custom Software Development", link: "/customsoftware" },
+    { name: "Mobile App Development", link: "/mobileapps" },
+    { name: "Website Development", link: "/websites" },
   ];
 
   return (
@@ -66,7 +66,6 @@ const Header = (props) => {
           <Tabs
             value={value}
             onChange={(e, value) => {
-              console.log(value);
               setValue(value);
             }}
             sx={{
@@ -131,9 +130,14 @@ const Header = (props) => {
             onMouseLeave: handleMenuClose,
           }}
         >
-          {services.map((option) => (
-            <MenuItem key={option} onClick={handleMenuClose}>
-              {option}
+          {services.map((option, index) => (
+            <MenuItem
+              component={Link}
+              to={option.link}
+              key={index}
+              onClick={handleMenuClose}
+            >
+              {option.name}
             </MenuItem>
           ))}
         </Menu>

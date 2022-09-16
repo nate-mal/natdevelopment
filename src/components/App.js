@@ -12,7 +12,22 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<div>Services Page</div>} />
+            <Route exact path="/services" element={<div>Services Page</div>} />
+            <Route
+              exact
+              path="/customsoftware"
+              element={<div>Custom Software Page</div>}
+            />
+            <Route
+              exact
+              path="/mobileapps"
+              element={<div>Mobile Apps Page</div>}
+            />
+            <Route
+              exact
+              path="/websites"
+              element={<div>Mobile aps Page</div>}
+            />
             <Route path="/revolution" element={<div>Revolution Page</div>} />
             <Route path="/about" element={<div>About Page</div>} />
             <Route path="/contact" element={<div>Contact Page</div>} />
