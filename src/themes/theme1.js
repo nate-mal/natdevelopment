@@ -29,9 +29,11 @@ const theme = createTheme({
       textTransform: "none",
       fontWeight: 700,
       fontSize: "1rem",
-      color: "#d1d1d1",
+      color: "#fff",
+      opacity: 0.7,
       "&:hover": {
-        color: "#fff",
+        // color: "#fff",
+        opacity: 1,
       },
     },
     estimate: {
