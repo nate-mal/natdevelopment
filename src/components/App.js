@@ -28,9 +28,14 @@ function App() {
               path="/websites"
               element={<div>Mobile aps Page</div>}
             />
-            <Route path="/revolution" element={<div>Revolution Page</div>} />
-            <Route path="/about" element={<div>About Page</div>} />
-            <Route path="/contact" element={<div>Contact Page</div>} />
+            <Route
+              exact
+              path="/revolution"
+              element={<div>Revolution Page</div>}
+            />
+            <Route exact path="/about" element={<div>About Page</div>} />
+            <Route exact path="/contact" element={<div>Contact Page</div>} />
+            <Route exact path="/estimate" element={<div>Estimate Page</div>} />
           </Routes>
         </BrowserRouter>
       </div>

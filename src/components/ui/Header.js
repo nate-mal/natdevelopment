@@ -12,16 +12,24 @@ import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import { MenuOpen } from "@mui/icons-material";
-import { useMediaQuery } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { IconButton, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 const Header = (props) => {
+  const iOS =
+    typeof navigator !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const defaultTheme = useTheme();
   const matches = useMediaQuery(defaultTheme.breakpoints.down("md"));
   const [value, setValue] = useState(0);
   const [service, setService] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const openMenu = Boolean(anchorEl);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -66,9 +74,9 @@ const Header = (props) => {
         <Tab component={Link} to="/" sx={tabsStyle} label="Home" />
         <Tab
           id="basic-button"
-          aria-controls={open ? "basic-menu" : undefined}
+          aria-controls={openMenu ? "basic-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
+          aria-expanded={openMenu ? "true" : undefined}
           onMouseEnter={handleMenuOpen}
           onClick={handleMenuOpen}
           component={Link}
@@ -89,6 +97,8 @@ const Header = (props) => {
       <Button
         variant="contained"
         color="secondary"
+        component={Link}
+        to="/estimate"
         sx={(theme) => {
           return {
             ...theme.typography.estimate,
@@ -104,7 +114,7 @@ const Header = (props) => {
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={openMenu}
         onClose={handleMenuClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
@@ -147,6 +157,132 @@ const Header = (props) => {
           </MenuItem>
         ))}
       </Menu>
+    </>
+  );
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+        sx={(theme) => {
+          return {
+            "& .MuiPaper-root": { backgroundColor: theme.palette.common.blue },
+          };
+        }}
+      >
+        <List
+          disablePadding
+          sx={(theme) => {
+            return {
+              " & .MuiListItem-root": {
+                ...theme.typography.tab,
+                color: "white",
+              },
+              "&& .Mui-selected, & .MuiListItem-root:hover": {
+                backgroundColor: theme.palette.primary.light,
+              },
+            };
+          }}
+        >
+          <ListItem
+            onClick={() => {
+              setValue(0);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/"
+            className={value === 0 ? " Mui-selected" : null}
+          >
+            <ListItemText disableTypography>Home</ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              setValue(1);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/services"
+            className={value === 1 ? "Mui-selected" : null}
+          >
+            <ListItemText disableTypography>Services</ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              setValue(2);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/revolution"
+            className={value === 2 ? "Mui-selected" : null}
+          >
+            <ListItemText disableTypography>The Revolution</ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              setValue(3);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/about"
+            className={value === 3 ? "Mui-selected" : null}
+          >
+            <ListItemText disableTypography>About Us</ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              setValue(4);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/contact"
+            className={value === 4 ? "Mui-selected" : null}
+          >
+            <ListItemText disableTypography>Contact Us</ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              setValue(5);
+              setOpenDrawer(false);
+            }}
+            divider
+            button
+            component={Link}
+            to="/estimate"
+            className={value === 5 ? "Mui-selected" : null}
+            sx={(theme) => {
+              return {
+                backgroundColor: theme.palette.secondary.main,
+                "&&:hover": { backgroundColor: theme.palette.secondary.main },
+                "&&&.Mui-selected": {
+                  backgroundColor: theme.palette.secondary.main,
+                },
+              };
+            }}
+          >
+            <ListItemText disableTypography>Free Estimate</ListItemText>
+          </ListItem>
+        </List>
+      </SwipeableDrawer>
+      <IconButton
+        sx={{ marginLeft: "auto", marginRight: "15px" }}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+      >
+        <MenuIcon sx={{ height: "50px", width: "50px" }} />
+      </IconButton>
     </>
   );
   useEffect(() => {
@@ -194,7 +330,7 @@ const Header = (props) => {
               }}
             />
           </Button>
-          {matches ? null : tabs}
+          {matches ? drawer : tabs}
         </Toolbar>
       </AppBar>
       <Box
