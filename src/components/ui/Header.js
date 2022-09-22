@@ -1,6 +1,6 @@
 import logo from "../../assets/logo.svg";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,7 +18,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { IconButton, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
-const Header = (props) => {
+import ListItemButton from "@mui/material/ListItemButton";
+import Collapse from "@mui/material/Collapse";
+import ExpandMore from "@mui/icons-material/ExpandLess";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+
+const Header = ({ options, specialOption }) => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -26,29 +31,26 @@ const Header = (props) => {
   const defaultTheme = useTheme();
   const matches = useMediaQuery(defaultTheme.breakpoints.down("md"));
   const [value, setValue] = useState(0);
+  const [subs, setSubs] = useState(null);
   const [service, setService] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openServiceCollapse, setOpenServiceCollapse] = useState(false);
+  if (anchorEl) console.log(anchorEl.attributes.getNamedItem("href").value);
   const openMenu = Boolean(anchorEl);
-  const handleMenuOpen = (event) => {
+  const handleMenuOpen = (event, subs) => {
+    setSubs(subs);
     setAnchorEl(event.currentTarget);
   };
   const handleMenuClose = () => {
     setAnchorEl(null);
+    setSubs(null);
   };
-  const services = useMemo(
-    () => [
-      { name: "Services", link: "/services", index: 0 },
-      {
-        name: "Custom Software Development",
-        link: "/customsoftware",
-        index: 1,
-      },
-      { name: "Mobile App Development", link: "/mobileapps", index: 2 },
-      { name: "Website Development", link: "/websites", index: 3 },
-    ],
-    []
-  );
+
+  const estimate = {
+    ...specialOption,
+    index: options.length,
+  };
   const tabsStyle = (theme) => {
     return {
       ...theme.typography.tab,
@@ -71,100 +73,113 @@ const Header = (props) => {
           },
         }}
       >
-        <Tab component={Link} to="/" sx={tabsStyle} label="Home" />
+        {options.map((option, index) => {
+          if (option.subs) {
+            return (
+              <Tab
+                key={index}
+                id={`${option.link}-tab`}
+                aria-controls={openMenu ? `${option.link}-menu` : undefined}
+                aria-haspopup="true"
+                aria-expanded={openMenu ? "true" : undefined}
+                onMouseEnter={(e) => handleMenuOpen(e, option.subs)}
+                onClick={(e) => handleMenuOpen(e, option.subs)}
+                component={Link}
+                to={option.link}
+                sx={tabsStyle}
+                label={option.name}
+              />
+            );
+          } else
+            return (
+              <Tab
+                key={index}
+                component={Link}
+                to={option.link}
+                sx={tabsStyle}
+                label={option.name}
+              />
+            );
+        })}
         <Tab
-          id="basic-button"
-          aria-controls={openMenu ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={openMenu ? "true" : undefined}
-          onMouseEnter={handleMenuOpen}
-          onClick={handleMenuOpen}
+          // variant="contained"
+          color="secondary"
           component={Link}
-          to="/services"
-          sx={tabsStyle}
-          label="Services"
+          to={estimate.link}
+          onClick={() => setValue(estimate.index)}
+          sx={(theme) => {
+            return {
+              ...theme.typography.estimate,
+              backgroundColor: theme.palette.secondary.main,
+              "&:hover": { backgroundColor: theme.palette.secondary.dark },
+              borderRadius: "50px",
+              marginLeft: "10px",
+              marginRight: "15px",
+              color: "white",
+            };
+          }}
+          label={estimate.name}
         />
-
-        <Tab
-          component={Link}
-          to="/revolution"
-          sx={tabsStyle}
-          label="The Revolution"
-        />
-        <Tab component={Link} to="/about" sx={tabsStyle} label="About Us" />
-        <Tab component={Link} to="/contact" sx={tabsStyle} label="Contact Us" />
       </Tabs>
-      <Button
-        variant="contained"
-        color="secondary"
-        component={Link}
-        to="/estimate"
-        sx={(theme) => {
-          return {
-            ...theme.typography.estimate,
-            borderRadius: "50px",
-            marginLeft: "10px",
-            marginRight: "15px",
-            color: "white",
-          };
-        }}
-      >
-        Free Estimate
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={openMenu}
-        onClose={handleMenuClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-          onMouseLeave: handleMenuClose,
-        }}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        sx={(theme) => {
-          return {
-            "& 	.MuiMenu-paper": {
-              backgroundColor: theme.palette.common.blue,
-            },
-          };
-        }}
-        elevation={0}
-      >
-        {services.map((option, index) => (
-          <MenuItem
-            component={Link}
-            to={option.link}
-            key={index}
-            onClick={() => {
-              setValue(1);
-              setService(option.link);
-              handleMenuClose();
-            }}
-            sx={(theme) => {
-              return option.link === service
-                ? { ...theme.typography.tab, opacity: 1 }
-                : { ...theme.typography.tab };
-            }}
-          >
-            {option.name}
-          </MenuItem>
-        ))}
-      </Menu>
+
+      {subs && (
+        <Menu
+          id={`${subs[0].link}-menu`}
+          anchorEl={anchorEl}
+          open={openMenu}
+          onClose={handleMenuClose}
+          MenuListProps={{
+            "aria-labelledby": `${subs[0].link}-tab`,
+            onMouseLeave: handleMenuClose,
+          }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          sx={(theme) => {
+            return {
+              "& 	.MuiMenu-paper": {
+                backgroundColor: theme.palette.common.blue,
+              },
+            };
+          }}
+          elevation={0}
+        >
+          {subs.map((option, index) => (
+            <MenuItem
+              component={Link}
+              to={option.link}
+              key={index}
+              onClick={() => {
+                setValue(subs[0].index);
+                setService(option.link);
+                handleMenuClose();
+              }}
+              sx={(theme) => {
+                return option.link === service
+                  ? { ...theme.typography.tab, opacity: 1 }
+                  : { ...theme.typography.tab };
+              }}
+            >
+              {option.name}
+            </MenuItem>
+          ))}
+        </Menu>
+      )}
     </>
   );
+
   const drawer = (
     <>
       <SwipeableDrawer
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         open={openDrawer}
+        anchor="right"
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
         sx={(theme) => {
@@ -177,91 +192,71 @@ const Header = (props) => {
           disablePadding
           sx={(theme) => {
             return {
-              " & .MuiListItem-root": {
+              " & .MuiListItem-root, & .MuiButtonBase-root": {
                 ...theme.typography.tab,
                 color: "white",
               },
-              "&& .Mui-selected, & .MuiListItem-root:hover": {
-                backgroundColor: theme.palette.primary.light,
-              },
+              "&& .Mui-selected, & .MuiListItem-root:hover,& .MuiButtonBase-root:hover":
+                {
+                  backgroundColor: theme.palette.primary.light,
+                },
             };
           }}
         >
+          {options.map((option, index) => {
+            if (option.subs) {
+              return (
+                <>
+                  <ListItemButton
+                    divider
+                    button
+                    onClick={() => setOpenServiceCollapse(!openServiceCollapse)}
+                    className={value === index ? " Mui-selected" : null}
+                  >
+                    <ListItemText primary={option.name} />
+                    {openServiceCollapse ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse
+                    in={openServiceCollapse}
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <List component="div" disablePadding>
+                      <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemText primary="Starred" />
+                      </ListItemButton>
+                    </List>
+                  </Collapse>
+                </>
+              );
+            } else
+              return (
+                <ListItem
+                  key={index}
+                  onClick={() => {
+                    setValue(index);
+                    setOpenDrawer(false);
+                  }}
+                  divider
+                  button
+                  component={Link}
+                  to={option.link}
+                  className={value === index ? " Mui-selected" : null}
+                >
+                  <ListItemText disableTypography>{option.name}</ListItemText>
+                </ListItem>
+              );
+          })}
           <ListItem
             onClick={() => {
-              setValue(0);
+              setValue(estimate.index);
               setOpenDrawer(false);
             }}
             divider
             button
             component={Link}
-            to="/"
-            className={value === 0 ? " Mui-selected" : null}
-          >
-            <ListItemText disableTypography>Home</ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setValue(1);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to="/services"
-            className={value === 1 ? "Mui-selected" : null}
-          >
-            <ListItemText disableTypography>Services</ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setValue(2);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to="/revolution"
-            className={value === 2 ? "Mui-selected" : null}
-          >
-            <ListItemText disableTypography>The Revolution</ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setValue(3);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to="/about"
-            className={value === 3 ? "Mui-selected" : null}
-          >
-            <ListItemText disableTypography>About Us</ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setValue(4);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to="/contact"
-            className={value === 4 ? "Mui-selected" : null}
-          >
-            <ListItemText disableTypography>Contact Us</ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setValue(5);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to="/estimate"
-            className={value === 5 ? "Mui-selected" : null}
+            to={estimate.link}
+            className={value === estimate.index ? "Mui-selected" : null}
             sx={(theme) => {
               return {
                 backgroundColor: theme.palette.secondary.main,
@@ -272,7 +267,7 @@ const Header = (props) => {
               };
             }}
           >
-            <ListItemText disableTypography>Free Estimate</ListItemText>
+            <ListItemText disableTypography>{estimate.name}</ListItemText>
           </ListItem>
         </List>
       </SwipeableDrawer>
@@ -285,22 +280,25 @@ const Header = (props) => {
       </IconButton>
     </>
   );
+
   useEffect(() => {
-    if (window.location.pathname === "/" && value !== 0) setValue(0);
-    else if (
-      services
-        .map((service) => service.link)
-        .includes(window.location.pathname) &&
-      value !== 1
-    ) {
-      setValue(1);
-      setService(window.location.pathname);
-    } else if (window.location.pathname === "/revolution" && value !== 2)
-      setValue(2);
-    else if (window.location.pathname === "/about" && value !== 3) setValue(3);
-    else if (window.location.pathname === "/contact" && value !== 4)
-      setValue(4);
-  }, [value, services]);
+    options.forEach((option, index) => {
+      if (window.location.pathname === option.link && value !== index)
+        setValue(index);
+
+      if (option.subs) {
+        option.subs.forEach((sub) => {
+          if (
+            window.location.pathname === sub.link &&
+            (value !== index || service !== sub.link)
+          ) {
+            setValue(1);
+            setService(window.location.pathname);
+          }
+        });
+      }
+    });
+  }, [value, service, options]);
 
   return (
     <>

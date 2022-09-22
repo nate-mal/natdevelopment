@@ -1,15 +1,45 @@
 import { ThemeProvider } from "@emotion/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { useMemo } from "react";
 import Header from "./ui/Header";
 import theme1 from "../themes/theme1";
 import Home from "./Home";
 function App() {
+  const options = useMemo(
+    () => [
+      { name: "Home", link: "/" },
+
+      {
+        name: "Servicii",
+        link: "/services",
+        subs: [
+          { name: "Servicii", link: "/services", index: 1 },
+          {
+            name: "Custom Software Development",
+            link: "/customsoftware",
+          },
+          { name: "Mobile App Development", link: "/mobileapps" },
+          { name: "Website Development", link: "/websites" },
+        ],
+      },
+      {
+        name: "The Revolution",
+        link: "/revolution",
+      },
+      {
+        name: "About Us",
+        link: "/about",
+      },
+      { name: "Contact Us", link: "/contact" },
+    ],
+    []
+  );
+  const estimate = { name: "Free Estimate", link: "/estimate" };
   return (
     <ThemeProvider theme={theme1}>
       <div className="App">
         <BrowserRouter>
-          <Header />
+          <Header options={options} specialOption={estimate} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route exact path="/services" element={<div>Services Page</div>} />
