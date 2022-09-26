@@ -196,7 +196,7 @@ const Header = ({ options, specialOption }) => {
                 ...theme.typography.tab,
                 color: "white",
               },
-              "&& .Mui-selected, & .MuiListItem-root:hover,& .MuiButtonBase-root:hover":
+              "&& .Mui-selected, && .MuiListItem-root:hover,&& .MuiButtonBase-root:hover":
                 {
                   backgroundColor: theme.palette.primary.light,
                 },
@@ -206,10 +206,9 @@ const Header = ({ options, specialOption }) => {
           {options.map((option, index) => {
             if (option.subs) {
               return (
-                <>
+                <Box key={index}>
                   <ListItemButton
                     divider
-                    button
                     onClick={() => setOpenServiceCollapse(!openServiceCollapse)}
                     className={value === index ? " Mui-selected" : null}
                   >
@@ -222,12 +221,35 @@ const Header = ({ options, specialOption }) => {
                     unmountOnExit
                   >
                     <List component="div" disablePadding>
-                      <ListItemButton sx={{ pl: 4 }}>
-                        <ListItemText primary="Starred" />
-                      </ListItemButton>
+                      {option.subs.map((sub, index) => {
+                        return (
+                          <ListItemButton
+                            divider
+                            component={Link}
+                            to={sub.link}
+                            key={index}
+                            onClick={() => {
+                              setValue(option.subs[0].index);
+                              setService(sub.link);
+                              setOpenServiceCollapse(!openServiceCollapse);
+                              setOpenDrawer(false);
+                            }}
+                            className={
+                              sub.link === service ? " Mui-selected" : null
+                            }
+                            sx={(theme) => {
+                              return option.link === service
+                                ? { ...theme.typography.tab, pl: 4, opacity: 1 }
+                                : { ...theme.typography.tab, pl: 4 };
+                            }}
+                          >
+                            <ListItemText primary={sub.name} />
+                          </ListItemButton>
+                        );
+                      })}
                     </List>
                   </Collapse>
-                </>
+                </Box>
               );
             } else
               return (
@@ -235,6 +257,7 @@ const Header = ({ options, specialOption }) => {
                   key={index}
                   onClick={() => {
                     setValue(index);
+                    setService(null);
                     setOpenDrawer(false);
                   }}
                   divider
@@ -250,6 +273,7 @@ const Header = ({ options, specialOption }) => {
           <ListItem
             onClick={() => {
               setValue(estimate.index);
+              setService(null);
               setOpenDrawer(false);
             }}
             divider
@@ -260,7 +284,7 @@ const Header = ({ options, specialOption }) => {
             sx={(theme) => {
               return {
                 backgroundColor: theme.palette.secondary.main,
-                "&&:hover": { backgroundColor: theme.palette.secondary.main },
+                "&&&:hover": { backgroundColor: theme.palette.secondary.main },
                 "&&&.Mui-selected": {
                   backgroundColor: theme.palette.secondary.main,
                 },
