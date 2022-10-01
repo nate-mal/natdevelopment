@@ -1,9 +1,13 @@
-import { ThemeProvider } from "@emotion/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useMemo } from "react";
 import Header from "./ui/Header";
 import theme1 from "../themes/theme1";
 import Home from "./Home";
+import Footer from "./ui/Footer";
+
+import { ThemeProvider } from "@emotion/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useMemo } from "react";
+import Box from "@mui/material/Box";
+
 function App() {
   const options = useMemo(
     () => [
@@ -45,7 +49,9 @@ function App() {
   const estimate = { name: "Free Estimate", link: "/estimate" };
   return (
     <ThemeProvider theme={theme1}>
-      <div className="App">
+      <Box
+        sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      >
         <BrowserRouter>
           <Header options={options} specialOption={estimate} />
           <Routes>
@@ -77,8 +83,9 @@ function App() {
             <Route exact path="/contact" element={<div>Contact Page</div>} />
             <Route exact path="/estimate" element={<div>Estimate Page</div>} />
           </Routes>
+          <Footer />
         </BrowserRouter>
-      </div>
+      </Box>
     </ThemeProvider>
   );
 }

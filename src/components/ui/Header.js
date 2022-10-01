@@ -13,6 +13,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -189,10 +190,19 @@ const Header = ({ options, specialOption }) => {
         onOpen={() => setOpenDrawer(true)}
         sx={(theme) => {
           return {
+            zIndex: defaultTheme.zIndex.appBar - 1,
             "& .MuiPaper-root": { backgroundColor: theme.palette.common.blue },
           };
         }}
       >
+        <Box
+          sx={(theme) => ({
+            ...defaultTheme.mixins.toolbar,
+            [defaultTheme.breakpoints.up("md")]: { marginBottom: "2em" },
+            [defaultTheme.breakpoints.down("md")]: { marginBottom: "1.5em" },
+            [defaultTheme.breakpoints.down("sm")]: { marginBottom: "1em" },
+          })}
+        />
         <List
           disablePadding
           sx={(theme) => {
@@ -321,7 +331,11 @@ const Header = ({ options, specialOption }) => {
         onClick={() => setOpenDrawer(!openDrawer)}
         disableRipple
       >
-        <MenuIcon sx={{ height: "50px", width: "50px" }} />
+        {openDrawer ? (
+          <CloseIcon sx={{ height: "50px", width: "50px" }} />
+        ) : (
+          <MenuIcon sx={{ height: "50px", width: "50px" }} />
+        )}
       </IconButton>
     </>
   );
@@ -378,7 +392,7 @@ const Header = ({ options, specialOption }) => {
       </AppBar>
       <Box
         sx={(theme) => ({
-          ...theme.mixins.toolbar,
+          ...defaultTheme.mixins.toolbar,
           [defaultTheme.breakpoints.up("md")]: { marginBottom: "2em" },
           [defaultTheme.breakpoints.down("md")]: { marginBottom: "1.5em" },
           [defaultTheme.breakpoints.down("sm")]: { marginBottom: "1em" },
