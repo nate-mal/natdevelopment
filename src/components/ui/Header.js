@@ -32,6 +32,7 @@ const Header = ({ options, specialOption }) => {
   const matches = useMediaQuery(defaultTheme.breakpoints.down("md"));
   const [value, setValue] = useState(0);
   const [subs, setSubs] = useState(null);
+  const [activeSubsIndex, setActiveSubsIndex] = useState(null);
   const [service, setService] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -47,10 +48,12 @@ const Header = ({ options, specialOption }) => {
     setSubs(null);
   };
 
-  const estimate = {
-    ...specialOption,
-    index: options.length,
-  };
+  const estimate = specialOption
+    ? {
+        ...specialOption,
+        index: options.length,
+      }
+    : undefined;
   const tabsStyle = (theme) => {
     return {
       ...theme.typography.tab,
@@ -101,25 +104,27 @@ const Header = ({ options, specialOption }) => {
               />
             );
         })}
-        <Tab
-          // variant="contained"
-          color="secondary"
-          component={Link}
-          to={estimate.link}
-          onClick={() => setValue(estimate.index)}
-          sx={(theme) => {
-            return {
-              ...theme.typography.estimate,
-              backgroundColor: theme.palette.secondary.main,
-              "&:hover": { backgroundColor: theme.palette.secondary.dark },
-              borderRadius: "50px",
-              marginLeft: "10px",
-              marginRight: "15px",
-              color: "white",
-            };
-          }}
-          label={estimate.name}
-        />
+        {estimate && (
+          <Tab
+            // variant="contained"
+            color="secondary"
+            component={Link}
+            to={estimate.link}
+            onClick={() => setValue(estimate.index)}
+            sx={(theme) => {
+              return {
+                ...theme.typography.estimate,
+                backgroundColor: theme.palette.secondary.main,
+                "&:hover": { backgroundColor: theme.palette.secondary.dark },
+                borderRadius: "50px",
+                marginLeft: "10px",
+                marginRight: "15px",
+                color: "white",
+              };
+            }}
+            label={estimate.name}
+          />
+        )}
       </Tabs>
 
       {subs && (
@@ -203,20 +208,30 @@ const Header = ({ options, specialOption }) => {
             };
           }}
         >
-          {options.map((option, index) => {
+          {options.map((option, optionIndex) => {
             if (option.subs) {
               return (
-                <Box key={index}>
+                <Box key={optionIndex}>
                   <ListItemButton
                     divider
-                    onClick={() => setOpenServiceCollapse(!openServiceCollapse)}
-                    className={value === index ? " Mui-selected" : null}
+                    onClick={() => {
+                      setActiveSubsIndex((prev) => {
+                        if (prev === optionIndex) return null;
+                        return optionIndex;
+                      });
+                      setOpenServiceCollapse(!openServiceCollapse);
+                    }}
+                    className={value === optionIndex ? " Mui-selected" : null}
                   >
                     <ListItemText primary={option.name} />
-                    {openServiceCollapse ? <ExpandLess /> : <ExpandMore />}
+                    {optionIndex === activeSubsIndex ? (
+                      <ExpandLess />
+                    ) : (
+                      <ExpandMore />
+                    )}
                   </ListItemButton>
                   <Collapse
-                    in={openServiceCollapse}
+                    in={optionIndex === activeSubsIndex}
                     timeout="auto"
                     unmountOnExit
                   >
@@ -229,7 +244,7 @@ const Header = ({ options, specialOption }) => {
                             to={sub.link}
                             key={index}
                             onClick={() => {
-                              setValue(option.subs[0].index);
+                              setValue(optionIndex);
                               setService(sub.link);
                               setOpenServiceCollapse(!openServiceCollapse);
                               setOpenDrawer(false);
@@ -254,45 +269,51 @@ const Header = ({ options, specialOption }) => {
             } else
               return (
                 <ListItem
-                  key={index}
+                  key={optionIndex}
                   onClick={() => {
-                    setValue(index);
+                    setValue(optionIndex);
                     setService(null);
                     setOpenDrawer(false);
+                    setOpenServiceCollapse(false);
                   }}
                   divider
                   button
                   component={Link}
                   to={option.link}
-                  className={value === index ? " Mui-selected" : null}
+                  className={value === optionIndex ? " Mui-selected" : null}
                 >
                   <ListItemText disableTypography>{option.name}</ListItemText>
                 </ListItem>
               );
           })}
-          <ListItem
-            onClick={() => {
-              setValue(estimate.index);
-              setService(null);
-              setOpenDrawer(false);
-            }}
-            divider
-            button
-            component={Link}
-            to={estimate.link}
-            className={value === estimate.index ? "Mui-selected" : null}
-            sx={(theme) => {
-              return {
-                backgroundColor: theme.palette.secondary.main,
-                "&&&:hover": { backgroundColor: theme.palette.secondary.main },
-                "&&&.Mui-selected": {
+          {estimate && (
+            <ListItem
+              onClick={() => {
+                setValue(estimate.index);
+                setService(null);
+                setOpenDrawer(false);
+                setOpenServiceCollapse(false);
+              }}
+              divider
+              button
+              component={Link}
+              to={estimate.link}
+              className={value === estimate.index ? "Mui-selected" : null}
+              sx={(theme) => {
+                return {
                   backgroundColor: theme.palette.secondary.main,
-                },
-              };
-            }}
-          >
-            <ListItemText disableTypography>{estimate.name}</ListItemText>
-          </ListItem>
+                  "&&&:hover": {
+                    backgroundColor: theme.palette.secondary.main,
+                  },
+                  "&&&.Mui-selected": {
+                    backgroundColor: theme.palette.secondary.main,
+                  },
+                };
+              }}
+            >
+              <ListItemText disableTypography>{estimate.name}</ListItemText>
+            </ListItem>
+          )}
         </List>
       </SwipeableDrawer>
       <IconButton

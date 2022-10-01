@@ -29,6 +29,14 @@ function App() {
       {
         name: "About Us",
         link: "/about",
+        subs: [
+          { name: "About Us", link: "/about", index: 1 },
+          {
+            name: "Our team",
+            link: "/team",
+          },
+          { name: "What others tell about us", link: "/reviews" },
+        ],
       },
       { name: "Contact Us", link: "/contact" },
     ],
@@ -64,6 +72,8 @@ function App() {
               element={<div>Revolution Page</div>}
             />
             <Route exact path="/about" element={<div>About Page</div>} />
+            <Route exact path="/team" element={<div>Team Page</div>} />
+            <Route exact path="/reviews" element={<div>Reviews Page</div>} />
             <Route exact path="/contact" element={<div>Contact Page</div>} />
             <Route exact path="/estimate" element={<div>Estimate Page</div>} />
           </Routes>
