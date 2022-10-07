@@ -21,7 +21,7 @@ import { IconButton, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import ListItemButton from "@mui/material/ListItemButton";
 import Collapse from "@mui/material/Collapse";
-import ExpandMore from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 
 const Header = ({ options, specialOption }) => {

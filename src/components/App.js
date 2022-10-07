@@ -83,7 +83,7 @@ function App() {
             <Route exact path="/contact" element={<div>Contact Page</div>} />
             <Route exact path="/estimate" element={<div>Estimate Page</div>} />
           </Routes>
-          <Footer />
+          <Footer options={options} />
         </BrowserRouter>
       </Box>
     </ThemeProvider>
