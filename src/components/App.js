@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useMemo } from "react";
 import Box from "@mui/material/Box";
-
+import { useState } from "react";
 function App() {
   const options = useMemo(
     () => [
@@ -34,7 +34,7 @@ function App() {
         name: "About Us",
         link: "/about",
         subs: [
-          { name: "About Us", link: "/about", index: 1 },
+          { name: "About Us", link: "/about", index: 3 },
           {
             name: "Our team",
             link: "/team",
@@ -42,18 +42,35 @@ function App() {
           { name: "What others tell about us", link: "/reviews" },
         ],
       },
-      { name: "Contact Us", link: "/contact" },
+      {
+        name: "Contact Us",
+        link: "/contact",
+        subs: [
+          { name: "Contact Us", link: "/contact", index: 4 },
+          { name: "Address", link: "/address" },
+        ],
+      },
     ],
     []
   );
   const estimate = { name: "Free Estimate", link: "/estimate" };
+
+  const [activeValue, setActiveValue] = useState(0);
+  const [activeSubValue, setActiveSubValue] = useState(null);
   return (
     <ThemeProvider theme={theme1}>
       <Box
         sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
       >
         <BrowserRouter>
-          <Header options={options} specialOption={estimate} />
+          <Header
+            options={options}
+            specialOption={estimate}
+            value={activeValue}
+            setValue={setActiveValue}
+            subValue={activeSubValue}
+            setSubValue={setActiveSubValue}
+          />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route exact path="/services" element={<div>Services Page</div>} />
@@ -81,9 +98,16 @@ function App() {
             <Route exact path="/team" element={<div>Team Page</div>} />
             <Route exact path="/reviews" element={<div>Reviews Page</div>} />
             <Route exact path="/contact" element={<div>Contact Page</div>} />
+            <Route exact path="/address" element={<div>Address Page</div>} />
             <Route exact path="/estimate" element={<div>Estimate Page</div>} />
           </Routes>
-          <Footer options={options} />
+          <Footer
+            options={options}
+            value={activeValue}
+            setValue={setActiveValue}
+            subValue={activeSubValue}
+            setSubValue={setActiveSubValue}
+          />
         </BrowserRouter>
       </Box>
     </ThemeProvider>

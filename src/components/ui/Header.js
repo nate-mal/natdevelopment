@@ -24,17 +24,23 @@ import Collapse from "@mui/material/Collapse";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 
-const Header = ({ options, specialOption }) => {
+const Header = ({
+  options,
+  specialOption,
+  value,
+  setValue,
+  subValue: service,
+  setSubValue: setService,
+}) => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const defaultTheme = useTheme();
   const matches = useMediaQuery(defaultTheme.breakpoints.down("md"));
-  const [value, setValue] = useState(0);
-  const [subs, setSubs] = useState(null);
+
   const [activeSubsIndex, setActiveSubsIndex] = useState(null);
-  const [service, setService] = useState(null);
+  const [subs, setSubs] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openServiceCollapse, setOpenServiceCollapse] = useState(false);
@@ -357,7 +363,7 @@ const Header = ({ options, specialOption }) => {
         });
       }
     });
-  }, [value, service, options]);
+  }, [value, service, options, setService, setValue]);
 
   return (
     <>

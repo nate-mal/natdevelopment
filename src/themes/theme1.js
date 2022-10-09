@@ -31,7 +31,7 @@ const theme = createTheme({
       fontSize: "1rem",
       color: "#fff",
       opacity: 0.7,
-      "&:hover, &.Mui-selected": {
+      "&&:hover, &&.Mui-selected": {
         opacity: 1,
       },
     },
