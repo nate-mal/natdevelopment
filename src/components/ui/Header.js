@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.svg";
+import AnimDrawerIcon from "./AnimDrawerIcon";
 
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -320,9 +321,11 @@ const Header = ({
                   backgroundColor: theme.palette.secondary.main,
                   "&&&:hover": {
                     backgroundColor: theme.palette.secondary.main,
+                    opacity: 1,
                   },
                   "&&&.Mui-selected": {
                     backgroundColor: theme.palette.secondary.main,
+                    opacity: 1,
                   },
                 };
               }}
@@ -333,15 +336,21 @@ const Header = ({
         </List>
       </SwipeableDrawer>
       <IconButton
-        sx={{ marginLeft: "auto", marginRight: "15px" }}
+        sx={{
+          marginLeft: "auto",
+          marginRight: "15px",
+          height: "50px",
+          width: "50px",
+        }}
         onClick={() => setOpenDrawer(!openDrawer)}
         disableRipple
       >
-        {openDrawer ? (
+        {/* {openDrawer ? (
           <CloseIcon sx={{ height: "50px", width: "50px" }} />
         ) : (
           <MenuIcon sx={{ height: "50px", width: "50px" }} />
-        )}
+        )} */}
+        <AnimDrawerIcon />
       </IconButton>
     </>
   );

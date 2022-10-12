@@ -81,12 +81,44 @@ const Footer = ({ options, value, setValue, subValue, setSubValue }) => {
           position: "absolute",
           marginTop: "-5em",
           justifyContent: "flex-end",
-          img: { width: "3em", height: "3rem", marginRight: "10px" },
+          right: "1.5em",
+          img: {
+            width: "3em",
+            height: "3rem",
+            [defaultTheme.breakpoints.down("md")]: {
+              width: "2rem",
+              height: "2rem",
+            },
+          },
         }}
       >
-        <Grid item component="img" src={facebookIcon} />
-        <Grid item component="img" src={instagramIcon} />
-        <Grid item component="img" src={twitterIcon} />
+        <Grid
+          item
+          component="a"
+          href="https://www.facebook.com"
+          rel="noopener norefferer"
+          target="_blank"
+        >
+          <img alt="facebook-icon" src={facebookIcon} />
+        </Grid>
+        <Grid
+          item
+          component="a"
+          href="https://www.instagram.com"
+          rel="noopener norefferer"
+          target="_blank"
+        >
+          <img alt="instagram-icon" src={instagramIcon} />
+        </Grid>
+        <Grid
+          item
+          component="a"
+          href="https://www.twitter.com"
+          rel="noopener norefferer"
+          target="_blank"
+        >
+          <img alt="twitter-icon" src={twitterIcon} />
+        </Grid>
       </Grid>
     </Box>
   );

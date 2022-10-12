@@ -1,6 +1,6 @@
 import Header from "./ui/Header";
 import theme1 from "../themes/theme1";
-import Home from "./Home";
+import LandingPage from "./LandingPage";
 import Footer from "./ui/Footer";
 
 import { ThemeProvider } from "@emotion/react";
@@ -72,7 +72,7 @@ function App() {
             setSubValue={setActiveSubValue}
           />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<LandingPage />} />
             <Route exact path="/services" element={<div>Services Page</div>} />
             <Route
               exact

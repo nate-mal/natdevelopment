@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material/styles";
-import { purple, green } from "@mui/material/colors";
+// import { purple, green } from "@mui/material/colors";
 
-const primaryColor = purple[900];
-const secondaryColor = green[500];
+// const primaryColor = purple[900];
+// const secondaryColor = green[500];
 
 const artBlue = "#0B72B9";
 const artOrange = "#FFBA60";
