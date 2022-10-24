@@ -17,7 +17,7 @@ const AnimDrawerIcon = (props) => {
         lottieRef.current.playSegments([50, 90], true);
       }
     }
-  }, [open]);
+  }, []);
   return (
     <Lottie
       lottieRef={lottieRef}
