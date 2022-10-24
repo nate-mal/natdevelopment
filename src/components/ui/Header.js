@@ -342,7 +342,7 @@ const Header = ({
           height: "50px",
           width: "50px",
         }}
-        onClick={() => setOpenDrawer(!openDrawer)}
+        onClick={() => setOpenDrawer((prev) => !prev)}
         disableRipple
       >
         {/* {openDrawer ? (
@@ -350,7 +350,7 @@ const Header = ({
         ) : (
           <MenuIcon sx={{ height: "50px", width: "50px" }} />
         )} */}
-        <AnimDrawerIcon />
+        <AnimDrawerIcon open={openDrawer} />
       </IconButton>
     </>
   );
