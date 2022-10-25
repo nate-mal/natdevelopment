@@ -7,9 +7,7 @@ const AnimDrawerIcon = (props) => {
   const { open } = props;
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
+    if (props.mountIsSet) {
       //  useEffect code here to be run on update
       if (open) {
         lottieRef.current.playSegments([0, 50], true);
@@ -17,7 +15,7 @@ const AnimDrawerIcon = (props) => {
         lottieRef.current.playSegments([50, 90], true);
       }
     }
-  }, []);
+  }, [open]);
   return (
     <Lottie
       lottieRef={lottieRef}

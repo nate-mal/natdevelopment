@@ -350,7 +350,7 @@ const Header = ({
         ) : (
           <MenuIcon sx={{ height: "50px", width: "50px" }} />
         )} */}
-        <AnimDrawerIcon open={openDrawer} />
+        <AnimDrawerIcon open={openDrawer} mountIsSet={Boolean(value)} />
       </IconButton>
     </>
   );
