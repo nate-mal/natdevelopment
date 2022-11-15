@@ -6,7 +6,7 @@ import { createTheme } from "@mui/material/styles";
 
 const artBlue = "#0B72B9";
 const artOrange = "#FFBA60";
-
+const artGrey = "#868686";
 const theme = createTheme({
   palette: {
     common: {
@@ -21,9 +21,26 @@ const theme = createTheme({
     },
   },
   typography: {
-    h3: {
+    revTitle: {
       fontWeight: 300,
+      color: `${artBlue}`,
+      lineHeight: 1.5,
+      textAlign: "center",
+      fontSize: "3rem",
     },
+
+    h3: {
+      fontFamily: "Pacifico",
+      fontSize: "2.5rem",
+      color: artBlue,
+    },
+    h4: {
+      fontFamily: "Raleway",
+      fontSize: "1.75rem",
+      color: artBlue,
+      fontWeight: 700,
+    },
+    subtitle1: { fontSize: "1.25rem", fontWeight: 300, color: artGrey },
     tab: {
       fontFamily: "Raleway",
       textTransform: "none",
@@ -40,6 +57,13 @@ const theme = createTheme({
       textTransform: "none",
       height: "45px",
       color: "white",
+    },
+    learnMore: {
+      fontFamily: "Roboto",
+      textTransform: "none",
+      borderRadius: "50px",
+      marginLeft: "10px",
+      marginRight: "15px",
     },
   },
 });

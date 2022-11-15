@@ -1,6 +1,7 @@
 import img_0 from "./img_0.png";
 import img_1 from "./img_1.png";
 import img_2 from "./img_2.png";
+// import img_2 from "./brat.svg";
 import img_3 from "./img_3.png";
 import img_4 from "./img_4.png";
 
@@ -11,7 +12,7 @@ const animationData = {
   op: 180.00000733155,
   w: 808,
   h: 595,
-  nm: "Bringing West Coast Technology to the Midwest 2",
+  nm: "Bringing  Technology to everyone",
   ddd: 0,
   assets: [
     {

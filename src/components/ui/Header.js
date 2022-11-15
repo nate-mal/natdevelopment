@@ -123,7 +123,7 @@ const Header = ({
               return {
                 ...theme.typography.estimate,
                 backgroundColor: theme.palette.secondary.main,
-                "&:hover": { backgroundColor: theme.palette.secondary.dark },
+                "&:hover": { backgroundColor: theme.palette.secondary.light },
                 borderRadius: "50px",
                 marginLeft: "10px",
                 marginRight: "15px",

@@ -22,7 +22,7 @@ function App() {
             name: "Custom Software Development",
             link: "/customsoftware",
           },
-          { name: "Mobile App Development", link: "/mobileapps" },
+          { name: "IOS/Android App Development", link: "/mobileapps" },
           { name: "Website Development", link: "/websites" },
         ],
       },
