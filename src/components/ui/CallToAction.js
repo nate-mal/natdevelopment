@@ -6,6 +6,7 @@ import RightArrow from "./RightArrow";
 import { useTheme } from "@emotion/react";
 import theme1 from "../../themes/theme1";
 import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -39,6 +40,8 @@ const CallToAction = () => {
             <Grid item>
               <Button
                 variant="outlined"
+                component={Link}
+                to="/revolution"
                 sx={(theme) => ({
                   ...theme.typography.learnMore,
                   height: "45px",
@@ -56,6 +59,8 @@ const CallToAction = () => {
           <Grid item>
             <Button
               variant="contained"
+              component={Link}
+              to="/estimate"
               sx={{
                 ...theme.typography.estimate,
                 borderRadius: 50,
@@ -79,11 +84,13 @@ const CallToAction = () => {
           backgroundImage: `url(${background})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
+          backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           height: "100%",
           width: "100%",
           [defaultTheme.breakpoints.down("md")]: {
             backgroundImage: `url(${mobileBackground})`,
+            backgroundAttachment: "inherit",
           },
         }}
       />

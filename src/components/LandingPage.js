@@ -1,6 +1,7 @@
 import Lottie from "lottie-react";
 
 import { Button, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import animationData from "../animations/landinganimation/data";
 import { useTheme } from "@emotion/react";
@@ -16,7 +17,7 @@ import revolutionBackground from "../assets/repeatingBackground.svg";
 import infoBackground from "../assets/infoBackground.svg";
 import CallToAction from "./ui/CallToAction";
 
-const LandingPage = () => {
+const LandingPage = ({ setValue, setSubValue: setService }) => {
   const theme = useTheme(theme1);
   const defaultTheme = useTheme();
   const matchesSM = useMediaQuery(defaultTheme.breakpoints.down("md"));
@@ -54,6 +55,9 @@ const LandingPage = () => {
               <Grid item>
                 <Button
                   variant="contained"
+                  component={Link}
+                  to="/estimate"
+                  onClick={setValue.bind(5)}
                   sx={(theme) => {
                     return {
                       ...theme.typography.estimate,
@@ -64,6 +68,7 @@ const LandingPage = () => {
                       borderRadius: "50px",
                       marginLeft: "10px",
                       marginRight: "15px",
+                      marginBottom: matchesXS ? "15px" : 0,
                       color: "white",
                     };
                   }}
@@ -74,6 +79,9 @@ const LandingPage = () => {
               <Grid item>
                 <Button
                   variant="outlined"
+                  component={Link}
+                  onClick={setValue.bind(1)}
+                  to="/services"
                   sx={(theme) => ({
                     ...theme.typography.learnMore,
                     height: "45px",
@@ -142,6 +150,12 @@ const LandingPage = () => {
               </Typography>
               <Button
                 variant="outlined"
+                component={Link}
+                onClick={() => {
+                  setValue(1);
+                  setService("/customsoftware");
+                }}
+                to="/customsoftware"
                 sx={(theme) => ({ ...theme.typography.learnMore })}
               >
                 <span style={{ marginRight: 10 }}>Learn More</span>
@@ -187,6 +201,12 @@ const LandingPage = () => {
               </Typography>
               <Button
                 variant="outlined"
+                component={Link}
+                onClick={() => {
+                  setValue(1);
+                  setService("/mobileapps");
+                }}
+                to="/mobileapps"
                 sx={(theme) => ({ ...theme.typography.learnMore })}
               >
                 <span style={{ marginRight: 10 }}>Learn More</span>
@@ -233,17 +253,15 @@ const LandingPage = () => {
               </Typography>
               <Typography variant="subtitle1">
                 Optimized for Search Engines, built for speed.{" "}
-                <span
-                  style={{
-                    color: theme.palette.common.orange,
-                    fontFamily: "Pacifico",
-                  }}
-                >
-                  celebration
-                </span>
               </Typography>
               <Button
                 variant="outlined"
+                component={Link}
+                onClick={() => {
+                  setValue(1);
+                  setService("/websites");
+                }}
+                to="/websites"
                 sx={(theme) => ({ ...theme.typography.learnMore })}
               >
                 <span style={{ marginRight: 10 }}>Learn More</span>
@@ -305,6 +323,9 @@ const LandingPage = () => {
                   </Typography>
                   <Button
                     variant="outlined"
+                    component={Link}
+                    onClick={setValue.bind(2)}
+                    to="/revolution"
                     sx={(theme) => ({ ...theme.typography.learnMore })}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
@@ -365,6 +386,8 @@ const LandingPage = () => {
                   <Grid item>
                     <Button
                       variant="outlined"
+                      component={Link}
+                      to="/about"
                       sx={(theme) => ({
                         ...theme.typography.learnMore,
                         height: "45px",
@@ -397,6 +420,8 @@ const LandingPage = () => {
                   <Grid item>
                     <Button
                       variant="outlined"
+                      component={Link}
+                      to="/contact"
                       sx={(theme) => ({
                         ...theme.typography.learnMore,
                         height: "45px",

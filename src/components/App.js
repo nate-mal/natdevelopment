@@ -8,6 +8,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useMemo } from "react";
 import Box from "@mui/material/Box";
 import { useState } from "react";
+
+import ScrollToTop from "./helpers/ScrollToTop";
+import ServicesPage from "./ServicesPage";
+import CustomSoftwarePage from "./CustomSoftwarePage";
 function App() {
   const options = useMemo(
     () => [
@@ -71,36 +75,59 @@ function App() {
             subValue={activeSubValue}
             setSubValue={setActiveSubValue}
           />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route exact path="/services" element={<div>Services Page</div>} />
-            <Route
-              exact
-              path="/customsoftware"
-              element={<div>Custom Software Page</div>}
-            />
-            <Route
-              exact
-              path="/mobileapps"
-              element={<div>Mobile Apps Page</div>}
-            />
-            <Route
-              exact
-              path="/websites"
-              element={<div>Mobile aps Page</div>}
-            />
-            <Route
-              exact
-              path="/revolution"
-              element={<div>Revolution Page</div>}
-            />
-            <Route exact path="/about" element={<div>About Page</div>} />
-            <Route exact path="/team" element={<div>Team Page</div>} />
-            <Route exact path="/reviews" element={<div>Reviews Page</div>} />
-            <Route exact path="/contact" element={<div>Contact Page</div>} />
-            <Route exact path="/address" element={<div>Address Page</div>} />
-            <Route exact path="/estimate" element={<div>Estimate Page</div>} />
-          </Routes>
+          <ScrollToTop>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <LandingPage
+                    setValue={setActiveValue}
+                    setSubValue={setActiveSubValue}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/services"
+                element={
+                  <ServicesPage
+                    setValue={setActiveValue}
+                    setSubValue={setActiveSubValue}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/customsoftware"
+                element={<CustomSoftwarePage />}
+              />
+              <Route
+                exact
+                path="/mobileapps"
+                element={<div>Mobile Apps Page</div>}
+              />
+              <Route
+                exact
+                path="/websites"
+                element={<div>Mobile aps Page</div>}
+              />
+              <Route
+                exact
+                path="/revolution"
+                element={<div>Revolution Page</div>}
+              />
+              <Route exact path="/about" element={<div>About Page</div>} />
+              <Route exact path="/team" element={<div>Team Page</div>} />
+              <Route exact path="/reviews" element={<div>Reviews Page</div>} />
+              <Route exact path="/contact" element={<div>Contact Page</div>} />
+              <Route exact path="/address" element={<div>Address Page</div>} />
+              <Route
+                exact
+                path="/estimate"
+                element={<div>Estimate Page</div>}
+              />
+            </Routes>
+          </ScrollToTop>
           <Footer
             options={options}
             value={activeValue}

@@ -1,3 +1,4 @@
+import { AppRegistration } from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 // import { purple, green } from "@mui/material/colors";
 
@@ -41,6 +42,7 @@ const theme = createTheme({
       fontWeight: 700,
     },
     subtitle1: { fontSize: "1.25rem", fontWeight: 300, color: artGrey },
+    body2: { color: artGrey },
     tab: {
       fontFamily: "Raleway",
       textTransform: "none",
