@@ -28,8 +28,8 @@ const CustomSoftware = () => {
         container
         direction="column"
         sx={{
-          paddingLeft: "5em",
-          paddingRight: "5em",
+          paddingLeft: matchesSm ? "1em" : "5em",
+          paddingRight: matchesSm ? "1em" : "5em",
           paddingTop: "2em",
           paddingBottom: "10em",
         }}
@@ -40,7 +40,7 @@ const CustomSoftware = () => {
           direction="row"
           sx={{
             marginRight: "1em",
-            marginLeft: "-3.5em",
+            marginLeft: matchesSm ? 0 : "-3.5em",
             "& .arrowContainer": {
               marginTop: "0.5em",
             },
@@ -221,8 +221,8 @@ const CustomSoftware = () => {
               <img
                 src={rootsImage}
                 alt="tree with the roots extending out"
-                height="450em"
-                width="450em"
+                height="300em"
+                width="300em"
               ></img>
             </Grid>
             <Grid
