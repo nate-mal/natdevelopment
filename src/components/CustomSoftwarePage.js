@@ -28,8 +28,8 @@ const CustomSoftware = () => {
         container
         direction="column"
         sx={{
-          paddingLeft: matchesSm ? "1em" : "5em",
-          paddingRight: matchesSm ? "1em" : "5em",
+          paddingLeft: matchesSm ? "1em" : matchesMd ? "2em" : "5em",
+          paddingRight: matchesSm ? "1em" : matchesMd ? "2em" : "5em",
           paddingTop: "2em",
           paddingBottom: "10em",
         }}
@@ -40,17 +40,23 @@ const CustomSoftware = () => {
           direction="row"
           sx={{
             marginRight: "1em",
-            marginLeft: matchesSm ? 0 : "-3.5em",
+            marginLeft: matchesSm ? 0 : matchesMd ? "-1em" : "-3.5em",
             "& .arrowContainer": {
               marginTop: "0.5em",
             },
           }}
         >
-          <Grid item className="arrowContainer">
-            <IconButton style={{ backgroundColor: "transparent" }}>
-              <img src={backArrow} alt="Back to Services Page"></img>
-            </IconButton>
-          </Grid>
+          {!matchesMd && (
+            <Grid item className="arrowContainer">
+              <IconButton
+                component={Link}
+                to="/services"
+                style={{ backgroundColor: "transparent" }}
+              >
+                <img src={backArrow} alt="Back to Services Page"></img>
+              </IconButton>
+            </Grid>
+          )}
           <Grid item container direction="column" sx={{ maxWidth: "40em" }}>
             <Grid item>
               <Typography
@@ -85,21 +91,27 @@ const CustomSoftware = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid item className="arrowContainer">
-            <IconButton style={{ backgroundColor: "transparent" }}>
-              <img
-                src={forwardArrow}
-                alt="Forward to IOS/Android Development page"
-              />
-            </IconButton>
-          </Grid>
+          {!matchesMd && (
+            <Grid item className="arrowContainer" sx={{ marginLeft: "auto" }}>
+              <IconButton
+                component={Link}
+                to="/mobileapps"
+                style={{ backgroundColor: "transparent" }}
+              >
+                <img
+                  src={forwardArrow}
+                  alt="Forward to IOS/Android Development page"
+                />
+              </IconButton>
+            </Grid>
+          )}
         </Grid>
         <Grid item container direction="row" justify="center">
           <Grid
             item
             container
             direction="column"
-            md
+            sm
             alignItems="center"
             sx={{ maxWidth: "40em" }}
           >
@@ -114,7 +126,7 @@ const CustomSoftware = () => {
             item
             container
             direction="column"
-            md
+            sm
             alignItems="center"
             sx={{ maxWidth: "40em" }}
           >
@@ -129,7 +141,7 @@ const CustomSoftware = () => {
             item
             container
             direction="column"
-            md
+            sm
             alignItems="center"
             sx={{ maxWidth: "40em" }}
           >

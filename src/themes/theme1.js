@@ -1,4 +1,3 @@
-import { AppRegistration } from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 // import { purple, green } from "@mui/material/colors";
 
@@ -66,6 +65,35 @@ const theme = createTheme({
       borderRadius: "50px",
       marginLeft: "10px",
       marginRight: "15px",
+    },
+  },
+  components: {
+    MuiInputLabel: {
+      styleOverrides: { root: { color: artBlue, fontSize: "1rem" } },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: { color: artGrey, fontWeight: 300 },
+        underline: {
+          "&:before": {
+            borderBottom: `2px solid ${artBlue}`,
+          },
+          "&:hover:before": {
+            borderBottom: `2px solid ${artBlue} !important`,
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        multiline: {
+          "&:before": {
+            borderBottom: `transparent !important`,
+          },
+
+          border: `2px solid ${artBlue} !important`,
+        },
+      },
     },
   },
 });

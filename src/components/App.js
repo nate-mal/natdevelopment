@@ -12,6 +12,11 @@ import { useState } from "react";
 import ScrollToTop from "./helpers/ScrollToTop";
 import ServicesPage from "./ServicesPage";
 import CustomSoftwarePage from "./CustomSoftwarePage";
+import MobileDevelopmentPage from "./MobileDevelopmentPage";
+import WebsitesDevelopmentPage from "./WebsitesDevelopment";
+import RevolutionPage from "./RevolutionPage";
+import AboutUsPage from "./AboutUsPage";
+import ContactUs from "./ContactUs";
 function App() {
   const options = useMemo(
     () => [
@@ -104,22 +109,18 @@ function App() {
               <Route
                 exact
                 path="/mobileapps"
-                element={<div>Mobile Apps Page</div>}
+                element={<MobileDevelopmentPage />}
               />
               <Route
                 exact
                 path="/websites"
-                element={<div>Mobile aps Page</div>}
+                element={<WebsitesDevelopmentPage />}
               />
-              <Route
-                exact
-                path="/revolution"
-                element={<div>Revolution Page</div>}
-              />
-              <Route exact path="/about" element={<div>About Page</div>} />
+              <Route exact path="/revolution" element={<RevolutionPage />} />
+              <Route exact path="/about" element={<AboutUsPage />} />
               <Route exact path="/team" element={<div>Team Page</div>} />
               <Route exact path="/reviews" element={<div>Reviews Page</div>} />
-              <Route exact path="/contact" element={<div>Contact Page</div>} />
+              <Route exact path="/contact" element={<ContactUs />} />
               <Route exact path="/address" element={<div>Address Page</div>} />
               <Route
                 exact
