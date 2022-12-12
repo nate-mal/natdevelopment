@@ -80,6 +80,7 @@ const ContactUs = () => {
           marginTop: matchesSM ? "3em" : matchesMD ? "5em" : 0,
           marginBottom: matchesMD ? "5em" : 0,
         }}
+        data-aos={matchesMD ? "fade-up" : "fade-right"}
       >
         <Grid item>
           <Grid item container direction="column">
@@ -243,6 +244,7 @@ const ContactUs = () => {
             backgroundImage: `url(${mobileBackground})`,
           },
         }}
+        data-aos="fade-zoom-in"
       >
         <Grid
           item
@@ -250,6 +252,8 @@ const ContactUs = () => {
             color: theme.palette.primary.main,
             textAlign: matchesSM ? "center" : "inherit",
           }}
+          data-aos="fade-left"
+          data-aos-delay="100"
         >
           <Typography variant="h2">
             Simple software.
@@ -277,7 +281,7 @@ const ContactUs = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item data-aos="zoom-in">
           <Button
             variant="contained"
             component={Link}

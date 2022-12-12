@@ -13,6 +13,7 @@ const ProcessItem = ({ title, paragraphs, color, img }) => {
       container
       direciton="row"
       sx={{ minHeight: "100vh", backgroundColor: color }}
+      data-aos="fade-zoom-in"
     >
       <Grid
         item
@@ -25,6 +26,7 @@ const ProcessItem = ({ title, paragraphs, color, img }) => {
           paddingBottom: "10em",
           "& p": { color: "#fff" },
         }}
+        data-aos="fade-right"
       >
         <Typography
           variant="h5"
@@ -50,6 +52,7 @@ const ProcessItem = ({ title, paragraphs, color, img }) => {
         justifyContent="center"
         alignItems="center"
         sx={{ padding: "1em" }}
+        data-aos="fade-left"
       >
         <Grid item sx={{ maxWidth: "40em" }}>
           <img width="100%" src={img} alt={`${title} icon`} />

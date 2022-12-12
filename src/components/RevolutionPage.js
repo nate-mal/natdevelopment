@@ -26,7 +26,7 @@ const RevolutionPage = () => {
           paddingBottom: "10em",
         }}
       >
-        <Grid item>
+        <Grid item data-aos="fade-up">
           <Typography
             variant="h2"
             sx={{
@@ -40,10 +40,15 @@ const RevolutionPage = () => {
           </Typography>
         </Grid>
         <Grid item container spacing={matchesMd ? 4 : 12}>
-          <Grid item container justifyContent="center" lg>
+          <Grid data-aos="fade-up" item container justifyContent="center" lg>
             <img src={vision} width="100%" height="100%" alt="mountain " />
           </Grid>
-          <Grid item lg sx={{ textAlign: matchesLg ? "inherit" : "right" }}>
+          <Grid
+            data-aos="fade-up"
+            item
+            lg
+            sx={{ textAlign: matchesLg ? "inherit" : "right" }}
+          >
             <Typography
               variant="h4"
               component="h2"
@@ -93,7 +98,7 @@ const RevolutionPage = () => {
           flexWrap="wrap-reverse"
           sx={{ marginTop: "10em" }}
         >
-          <Grid item lg>
+          <Grid item lg data-aos="fade-up">
             <Typography
               variant="h4"
               component="h2"
@@ -146,7 +151,7 @@ const RevolutionPage = () => {
               more affordable than ever before.
             </Typography>
           </Grid>
-          <Grid item lg>
+          <Grid item lg data-aos="fade-up">
             <Lottie
               animationData={technologyAnimaiton}
               loop={true}

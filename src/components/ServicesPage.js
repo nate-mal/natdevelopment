@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -17,6 +18,7 @@ const ServicesPage = ({ setValue, setSubValue: setService }) => {
   const defaultTheme = useTheme();
   const matchesSM = useMediaQuery(defaultTheme.breakpoints.down("md"));
   // const matchesXS = useMediaQuery(defaultTheme.breakpoints.down("sm"));
+
   return (
     <Grid container direction="column">
       <Grid item>
@@ -26,6 +28,7 @@ const ServicesPage = ({ setValue, setSubValue: setService }) => {
             ...theme.typography.revTitle,
             textAlign: matchesSM ? "center" : "inherit",
             marginLeft: matchesSM ? "none" : "2em",
+            marginBottom: matchesSM ? "2em" : "none",
           }}
         >
           Services
@@ -41,7 +44,11 @@ const ServicesPage = ({ setValue, setSubValue: setService }) => {
         }}
       >
         {/*-----Mobile App develompent Block-----*/}
-        <Grid item sx={{ marginTop: matchesSM ? "1em" : "5em" }}>
+        <Grid
+          item
+          data-aos={matchesSM ? "fade-up" : "fade-left"}
+          sx={{ marginTop: matchesSM ? "1em" : "5em" }}
+        >
           <Grid
             container
             direction="row"
@@ -100,7 +107,11 @@ const ServicesPage = ({ setValue, setSubValue: setService }) => {
           </Grid>
         </Grid>
         {/*-----Custom Software Block-----*/}
-        <Grid item sx={{ marginTop: "12em" }}>
+        <Grid
+          item
+          data-aos={matchesSM ? "fade-up" : "fade-right"}
+          sx={{ marginTop: "12em" }}
+        >
           <Grid
             container
             direction="row"
@@ -160,7 +171,11 @@ const ServicesPage = ({ setValue, setSubValue: setService }) => {
         </Grid>
 
         {/*-----Websites Development Block-----*/}
-        <Grid item sx={{ marginTop: "12em", marginBottom: "5em" }}>
+        <Grid
+          item
+          data-aos={matchesSM ? "fade-up" : "fade-left"}
+          sx={{ marginTop: "12em", marginBottom: "5em" }}
+        >
           <Grid
             container
             direction="row"

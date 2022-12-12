@@ -57,7 +57,13 @@ const CustomSoftware = () => {
               </IconButton>
             </Grid>
           )}
-          <Grid item container direction="column" sx={{ maxWidth: "40em" }}>
+          <Grid
+            data-aos="fade-up"
+            item
+            container
+            direction="column"
+            sx={{ maxWidth: "40em" }}
+          >
             <Grid item>
               <Typography
                 variant="h4"
@@ -106,7 +112,13 @@ const CustomSoftware = () => {
             </Grid>
           )}
         </Grid>
-        <Grid item container direction="row" justify="center">
+        <Grid
+          item
+          data-aos="fade-up"
+          container
+          direction="row"
+          justify="center"
+        >
           <Grid
             item
             container
@@ -157,7 +169,7 @@ const CustomSoftware = () => {
 
         <Grid item container sx={{ maxWidth: "40em", marginTop: "5em" }}>
           <Grid item container md>
-            <Grid item container direction="column" md>
+            <Grid item data-aos="fade-up" container direction="column" md>
               <Grid item>
                 <Typography
                   variant="h4"
@@ -183,7 +195,7 @@ const CustomSoftware = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item md alignSelf="flex-end">
+            <Grid data-aos="fade-up" item md alignSelf="flex-end">
               <Lottie
                 animationData={documentsAnimationData}
                 loop={true}
@@ -195,6 +207,7 @@ const CustomSoftware = () => {
           <Grid item container md>
             <Grid item md></Grid>
             <Grid
+              data-aos="fade-up"
               item
               container
               direction="column"
@@ -222,6 +235,7 @@ const CustomSoftware = () => {
         </Grid>
         <Grid
           item
+          data-aos="fade-up"
           container
           sx={{ marginTop: "10em" }}
           direction="column"
@@ -275,7 +289,7 @@ const CustomSoftware = () => {
         {/* Automation */}
 
         <Grid item container sx={{ maxWidth: "40em", marginTop: "5em" }}>
-          <Grid item container md>
+          <Grid data-aos="fade-up" item container md>
             <Grid item container direction="column" sm>
               <Grid item>
                 <Typography
@@ -315,7 +329,13 @@ const CustomSoftware = () => {
               ></Lottie>
             </Grid>
           </Grid>
-          <Grid item container md sx={{ flexWrap: "wrap-reverse" }}>
+          <Grid
+            data-aos="fade-up"
+            item
+            container
+            md
+            sx={{ flexWrap: "wrap-reverse" }}
+          >
             <Grid
               item
               container

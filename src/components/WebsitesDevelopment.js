@@ -43,6 +43,7 @@ const WebsitesDevelopmentPage = () => {
               marginTop: "0.5em",
             },
           }}
+          data-aos="fade-up"
         >
           {!matchesMd && (
             <Grid item className="arrowContainer">
@@ -94,7 +95,7 @@ const WebsitesDevelopmentPage = () => {
           )}
         </Grid>
         <Grid item container direction="column">
-          <Grid item container sx={{ marginTop: "15em" }}>
+          <Grid data-aos="fade-up" item container sx={{ marginTop: "5em" }}>
             <Grid
               item
               container
@@ -135,6 +136,7 @@ const WebsitesDevelopmentPage = () => {
             container
             justifyContent="flex-end"
             sx={{ marginTop: "15em" }}
+            data-aos="fade-up"
           >
             <Grid
               item
@@ -172,7 +174,7 @@ const WebsitesDevelopmentPage = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item container sx={{ marginTop: "15em" }}>
+          <Grid item container sx={{ marginTop: "15em" }} data-aos="fade-up">
             <Grid
               item
               container
@@ -224,6 +226,7 @@ const WebsitesDevelopmentPage = () => {
                       marginBottom: "0.5em",
                       textAlign: "left",
                     }}
+                    data-aos="fade-up"
                   >
                     Search Engine Optimization
                   </Typography>
@@ -233,6 +236,7 @@ const WebsitesDevelopmentPage = () => {
                   sm
                   container
                   justifyContent={matchesSm ? "center" : "none"}
+                  data-aos="fade-up"
                 >
                   <Grid item alignSelf="center">
                     <img src={seo} alt="analytics chart" />

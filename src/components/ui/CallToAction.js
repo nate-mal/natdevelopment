@@ -15,7 +15,7 @@ const CallToAction = () => {
   const defaultTheme = useTheme();
   const matchesSM = useMediaQuery(defaultTheme.breakpoints.down("md"));
   return (
-    <Grid container sx={{ height: "60em" }}>
+    <Grid data-aos="fade-zoom-in" container sx={{ height: "60em" }}>
       <Grid item>
         <Grid
           container
@@ -28,6 +28,8 @@ const CallToAction = () => {
             width: "100%",
             textAlign: matchesSM ? "center" : "inherit",
           }}
+          data-aos="fade-up"
+          data-aos-delay="600"
         >
           <Grid item sx={{ color: theme.palette.primary.main }}>
             <Typography variant="h2">

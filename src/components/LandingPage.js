@@ -30,6 +30,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
           justifyContent="center"
           alignItems="center"
           direction="row"
+          data-aos="fade-up"
         >
           {/*-----Hero Section-----*/}
           <Grid sm item sx={{ margin: "2em" }}>
@@ -118,6 +119,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
             [defaultTheme.breakpoints.down("sm")]: { marginLeft: 0 },
           },
         }}
+        data-aos="fade-up"
       >
         {/*-----Custom Software Block-----*/}
         <Grid item sx={{ marginTop: "12em" }}>
@@ -125,6 +127,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
             container
             direction="row"
             justifyContent={matchesSM ? "center" : undefined}
+            data-aos="fade-up"
           >
             <Grid
               item
@@ -179,7 +182,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
           </Grid>
         </Grid>
         {/*-----Mobile App develompent Block-----*/}
-        <Grid item sx={{ marginTop: "12em" }}>
+        <Grid item sx={{ marginTop: "12em" }} data-aos="fade-up">
           <Grid
             container
             direction="row"
@@ -234,7 +237,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
           </Grid>
         </Grid>
         {/*-----Websites Development Block-----*/}
-        <Grid item sx={{ marginTop: "12em" }}>
+        <Grid item sx={{ marginTop: "12em" }} data-aos="fade-up">
           <Grid
             container
             direction="row"
@@ -286,7 +289,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
         </Grid>
       </Grid>
       {/* The Revolution Block */}
-      <Grid item>
+      <Grid item data-aos="fade-zoom-in">
         <Grid
           container
           alignItems="center"
@@ -310,7 +313,13 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
             }}
           >
             <CardContent>
-              <Grid container direction="column" sx={{ textAlign: "center" }}>
+              <Grid
+                container
+                direction="column"
+                sx={{ textAlign: "center" }}
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
                 <Grid item>
                   <Typography variant="h3" gutterBottom>
                     The Revolution
@@ -352,7 +361,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
         </Grid>
       </Grid>
       {/* Information Block */}
-      <Grid item>
+      <Grid item data-aos="face-zoom-in">
         <Grid
           container
           style={{ height: "80em" }}
@@ -378,7 +387,12 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
                 sm
                 sx={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em" }}
               >
-                <Grid container direction="column" sx={{ color: "white" }}>
+                <Grid
+                  container
+                  direction="column"
+                  sx={{ color: "white" }}
+                  data-aos="fade-right"
+                >
                   <Typography variant="h2">About Us</Typography>
                   <Typography variant="subtitle2">
                     Let's get personal.
@@ -409,7 +423,12 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
                   textAlign: matchesXS ? "center" : "right",
                 }}
               >
-                <Grid container direction="column" sx={{ color: "white" }}>
+                <Grid
+                  container
+                  direction="column"
+                  sx={{ color: "white" }}
+                  data-aos="fade-left"
+                >
                   <Typography variant="h2">Contact Us</Typography>
                   <Typography variant="subtitle2">
                     Say hello!

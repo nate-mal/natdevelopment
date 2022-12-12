@@ -32,6 +32,7 @@ const MobileDevelopmentPage = () => {
         }}
       >
         <Grid
+          data-aos="fade-up"
           item
           container
           direction="row"
@@ -101,7 +102,7 @@ const MobileDevelopmentPage = () => {
 
         {/* Integration animation */}
         <Grid item container sx={{ marginTop: "5em" }}>
-          <Grid item container md>
+          <Grid data-aos="fade-up" item container md>
             <Grid item container direction="column" md>
               <Grid item>
                 <Typography
@@ -126,7 +127,7 @@ const MobileDevelopmentPage = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item container md justifyContent="center">
+          <Grid data-aos="fade-up" item container md justifyContent="center">
             <Grid item>
               <Lottie
                 animationData={integrationAnimationData}
@@ -136,7 +137,7 @@ const MobileDevelopmentPage = () => {
               ></Lottie>
             </Grid>
           </Grid>
-          <Grid item container md>
+          <Grid data-aos="fade-up" item container md>
             <Grid
               item
               container
@@ -172,8 +173,13 @@ const MobileDevelopmentPage = () => {
           </Grid>
         </Grid>
 
-        <Grid item container sx={{ marginTop: "15em", textAlign: "center" }}>
-          <Grid item md container direction="column">
+        <Grid
+          item
+          container
+          alignItems="flex-start"
+          sx={{ marginTop: "15em", textAlign: "center" }}
+        >
+          <Grid data-aos="fade-up" item md container direction="column">
             <Grid item>
               <Typography
                 variant="h4"
@@ -187,7 +193,15 @@ const MobileDevelopmentPage = () => {
               <img src={swiss} alt="swiss army knife" />
             </Grid>
           </Grid>
-          <Grid item md container direction="column" sx={{ marginTop: "5em" }}>
+
+          <Grid
+            data-aos="fade-up"
+            item
+            md
+            container
+            direction="column"
+            sx={{ marginTop: matchesSm ? "5em" : 0 }}
+          >
             <Grid item>
               <Typography
                 variant="h4"
@@ -198,10 +212,17 @@ const MobileDevelopmentPage = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <img width="400px" src={access} alt="tear one off" />
+              <img width="300px" src={access} alt="tear one off" />
             </Grid>
           </Grid>
-          <Grid item md container direction="column" sx={{ marginTop: "5em" }}>
+          <Grid
+            data-aos="fade-up"
+            item
+            md
+            container
+            direction="column"
+            sx={{ marginTop: matchesSm ? "5em" : 0 }}
+          >
             <Grid item>
               <Typography
                 variant="h4"

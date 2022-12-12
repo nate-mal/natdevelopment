@@ -2,11 +2,13 @@ import Header from "./ui/Header";
 import theme1 from "../themes/theme1";
 import LandingPage from "./LandingPage";
 import Footer from "./ui/Footer";
+import "aos/dist/aos.css";
 
 import { ThemeProvider } from "@emotion/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import Box from "@mui/material/Box";
+import AOS from "aos";
 import { useState } from "react";
 
 import ScrollToTop from "./helpers/ScrollToTop";
@@ -66,6 +68,14 @@ function App() {
 
   const [activeValue, setActiveValue] = useState(0);
   const [activeSubValue, setActiveSubValue] = useState(null);
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      duration: 600,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+  }, []);
   return (
     <ThemeProvider theme={theme1}>
       <Box

@@ -25,21 +25,21 @@ const AboutUsPage = () => {
           paddingBottom: "10em",
         }}
       >
-        <Grid item>
+        <Grid item data-aos="fade-up">
           <Typography
             variant="h2"
             sx={{
               ...theme.typography.revTitle,
               textAlign: matchesLg ? "center" : "inherit",
               marginLeft: matchesLg ? "none" : "2em",
-              marginBottom: "1em",
+              marginBottom: matchesSm ? "1em" : "2em",
             }}
           >
             About Us
           </Typography>
         </Grid>
         <Grid item container spacing={matchesMd ? 4 : 12}>
-          <Grid item xs={matchesMd ? 12 : 8}>
+          <Grid item xs={matchesMd ? 12 : 8} d>
             <Typography
               variant="h4"
               component="h2"
@@ -48,38 +48,69 @@ const AboutUsPage = () => {
                 marginBottom: "0.5em",
                 marginLeft: "2em",
               }}
+              data-aos="fade-up"
             >
               History
             </Typography>
-            <Typography variant="body2" paragraph>
-              We’re the new kid on the block.
-            </Typography>
-            <Typography variant="body2" paragraph>
-              Founded in 2019, we’re ready to get our hands on the world’s
-              business problems.
-            </Typography>
-            <Typography variant="body2" paragraph>
-              It all started with one question: Why aren’t all businesses using
-              available technology? There are many different answers to that
-              question: economic barriers, social barriers, educational
-              barriers, and sometimes institutional barriers.
-            </Typography>
-            <Typography variant="body2" paragraph>
-              We aim to be a powerful force in overcoming these obstacles.
-              Recent developments in software engineering and computing power,
-              compounded by the proliferation of smart phones, has opened up
-              infinite worlds of possibility. Things that have always been done
-              by hand can now be done digitally and automatically, and
-              completely new methods of interaction are created daily. Taking
-              full advantage of these advancements is the name of the game.
-            </Typography>
-            <Typography variant="body2" paragraph>
-              All this change can be a lot to keep up with, and that’s where we
-              come in.
-            </Typography>
+            <Box data-aos="fade-up">
+              <Typography variant="body2" paragraph>
+                We’re the new kid on the block.
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Founded in 2019, we’re ready to get our hands on the world’s
+                business problems.
+              </Typography>
+              <Typography variant="body2" paragraph>
+                It all started with one question: Why aren’t all businesses
+                using available technology? There are many different answers to
+                that question: economic barriers, social barriers, educational
+                barriers, and sometimes institutional barriers.
+              </Typography>
+              <Typography variant="body2" paragraph>
+                We aim to be a powerful force in overcoming these obstacles.
+                Recent developments in software engineering and computing power,
+                compounded by the proliferation of smart phones, has opened up
+                infinite worlds of possibility. Things that have always been
+                done by hand can now be done digitally and automatically, and
+                completely new methods of interaction are created daily. Taking
+                full advantage of these advancements is the name of the game.
+              </Typography>
+              <Typography variant="body2" paragraph>
+                All this change can be a lot to keep up with, and that’s where
+                we come in.
+              </Typography>
+            </Box>
           </Grid>
-          <Grid item container justifyContent="center" xs={matchesMd ? 12 : 4}>
-            <img src={history} alt="history book " />
+          <Grid
+            item
+            container
+            alignContent="center"
+            justifyContent="center"
+            xs={matchesMd ? 12 : 4}
+            data-aos="fade-up"
+          >
+            <img
+              width={
+                matchesSm
+                  ? "300px"
+                  : matchesMd
+                  ? "100%"
+                  : matchesLg
+                  ? "200px"
+                  : "300px"
+              }
+              height={
+                matchesSm
+                  ? "200px"
+                  : matchesMd
+                  ? "100%"
+                  : matchesLg
+                  ? "150px"
+                  : "200px"
+              }
+              src={history}
+              alt="history book "
+            />
           </Grid>
         </Grid>
         <Grid
@@ -87,9 +118,10 @@ const AboutUsPage = () => {
           container
           justifyContent="center"
           sx={{
-            marginTop: "10em",
+            marginTop: matchesMd ? "10em" : "15em",
             textAlign: "center",
           }}
+          data-aos="fade-up"
         >
           <Grid item sx={{ p: { maxWidth: "500px" } }}>
             <Typography
