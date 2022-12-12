@@ -391,7 +391,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
                   container
                   direction="column"
                   sx={{ color: "white" }}
-                  data-aos="fade-right"
+                  data-aos={matchesSM ? "fade-up" : "fade-right"}
                 >
                   <Typography variant="h2">About Us</Typography>
                   <Typography variant="subtitle2">
@@ -427,7 +427,7 @@ const LandingPage = ({ setValue, setSubValue: setService }) => {
                   container
                   direction="column"
                   sx={{ color: "white" }}
-                  data-aos="fade-left"
+                  data-aos={matchesSM ? "fade-up" : "fade-left"}
                 >
                   <Typography variant="h2">Contact Us</Typography>
                   <Typography variant="subtitle2">

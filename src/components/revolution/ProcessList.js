@@ -141,7 +141,7 @@ const ProcessList = () => {
           marginLeft: ".5em",
           textAlign: "center",
         }}
-        data-aos="fade-up"
+        data-aos="zoom-in"
       >
         Process
       </Typography>

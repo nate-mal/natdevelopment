@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 
 const ProcessItem = ({ title, paragraphs, color, img }) => {
   const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMd = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Grid
@@ -26,7 +27,7 @@ const ProcessItem = ({ title, paragraphs, color, img }) => {
           paddingBottom: "10em",
           "& p": { color: "#fff" },
         }}
-        data-aos="fade-right"
+        data-aos={matchesSM ? "fade-up" : "fade-right"}
       >
         <Typography
           variant="h5"
@@ -52,7 +53,7 @@ const ProcessItem = ({ title, paragraphs, color, img }) => {
         justifyContent="center"
         alignItems="center"
         sx={{ padding: "1em" }}
-        data-aos="fade-left"
+        data-aos={matchesSM ? "fade-up" : "fade-left"}
       >
         <Grid item sx={{ maxWidth: "40em" }}>
           <img width="100%" src={img} alt={`${title} icon`} />
