@@ -1,7 +1,14 @@
 import { useTheme } from "@emotion/react";
 // import useMediaQuery from "@mui/material/useMediaQuery";
 import Grid from "@mui/material/Grid";
-import { TextField, Typography, Button, useMediaQuery } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Button,
+  useMediaQuery,
+  Dialog,
+  DialogContent,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 import background from "../assets/background.jpg";
@@ -11,10 +18,13 @@ import emailIcon from "../assets/email.svg";
 import RightArrow from "./ui/RightArrow";
 import airplane from "../assets/send.svg";
 import { useCallback, useEffect, useState } from "react";
+
 const ContactUs = () => {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const matchesMD = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("XS"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesLG = useMediaQuery(theme.breakpoints.down("lg"));
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +34,7 @@ const ContactUs = () => {
   const [phoneHelper, setPhoneHelper] = useState("");
   const [phoneTouched, setPhoneTouched] = useState(false);
   const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
 
   const onChange = useCallback(
     (event) => {
@@ -77,123 +88,128 @@ const ContactUs = () => {
         lg={4}
         xl={3}
         sx={{
-          marginTop: matchesSM ? "3em" : matchesMD ? "5em" : 0,
+          marginTop: matchesSM ? "3em" : matchesMD ? "5em" : "3em",
           marginBottom: matchesMD ? "5em" : 0,
         }}
         data-aos={matchesMD ? "fade-up" : "fade-right"}
       >
         <Grid item>
-          <Grid item container direction="column">
-            <Grid item sx={{ textAlign: matchesMD ? "center" : "inherit" }}>
-              <Typography variant="h4" sx={{ lineHeight: 1 }}>
-                Contact Us
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ color: theme.palette.common.blue }}
-              >
-                We're waiting.
-              </Typography>
-            </Grid>
-            <Grid item container alignItems="center" sx={{ marginTop: "2em" }}>
-              <Grid item>
-                <img
-                  src={phoneIcon}
-                  alt="phone"
-                  style={{ marginRight: ".5em" }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="body1"
-                  href="tel:555555555"
-                  component="a"
-                  sx={{
-                    color: theme.palette.common.blue,
-                    fontSize: "1rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  (555)-555-555
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" sx={{ marginBottom: "2em" }}>
-              <Grid item>
-                <img
-                  src={emailIcon}
-                  alt="email "
-                  style={{ marginRight: ".5em" }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="body1"
-                  component="a"
-                  href="mailto:artdev@gmail.com"
-                  sx={{
-                    color: theme.palette.common.blue,
-                    fontSize: "1rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  artdev@gmail.com
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              container
-              direction="column"
-              style={{ maxWidth: "20em" }}
+          <Grid item sx={{ textAlign: matchesMD ? "center" : "inherit" }}>
+            <Typography variant="h4" sx={{ lineHeight: 1 }}>
+              Contact Us
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ color: theme.palette.common.blue }}
             >
-              <Grid item sx={{ marginBottom: ".5em" }}>
-                <TextField
-                  variant="standard"
-                  label="Name"
-                  id="name"
-                  fullWidth
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                />
-              </Grid>
-              <Grid item sx={{ marginBottom: ".5em" }}>
-                <TextField
-                  variant="standard"
-                  label="Email"
-                  id="email"
-                  helperText={emailHelper}
-                  error={emailHelper !== ""}
-                  fullWidth
-                  value={email}
-                  onChange={onChange}
-                  onBlur={setEmailTouched}
-                />
-              </Grid>
-              <Grid item sx={{ marginBottom: ".5em" }}>
-                <TextField
-                  variant="standard"
-                  label="Phone"
-                  id="phone"
-                  fullWidth
-                  value={phone}
-                  onChange={onChange}
-                  onBlur={setPhoneTouched}
-                  error={phoneHelper.length !== 0}
-                />
-              </Grid>
-            </Grid>
-            <Grid item style={{ maxWidth: "20em", marginTop: "5em" }}>
-              <TextField
-                variant="standard"
-                multiline
-                rows={10}
-                value={message}
-                id={message}
-                onChange={(event) => setMessage(event.target.value)}
+              We're waiting.
+            </Typography>
+          </Grid>
+          <Grid item container alignItems="center" sx={{ marginTop: "2em" }}>
+            <Grid item>
+              <img
+                src={phoneIcon}
+                alt="phone"
+                style={{ marginRight: ".5em" }}
               />
             </Grid>
-            <Grid item container justifyContent="center">
+            <Grid item>
+              <Typography
+                variant="body1"
+                href="tel:555555555"
+                component="a"
+                sx={{
+                  color: theme.palette.common.blue,
+                  fontSize: "1rem",
+                  textDecoration: "none",
+                }}
+              >
+                (555)-555-555
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container alignItems="center" sx={{ marginBottom: "2em" }}>
+            <Grid item>
+              <img
+                src={emailIcon}
+                alt="email "
+                style={{ marginRight: ".5em" }}
+              />
+            </Grid>
+            <Grid item>
+              <Typography
+                variant="body1"
+                component="a"
+                href="mailto:artdev@gmail.com"
+                sx={{
+                  color: theme.palette.common.blue,
+                  fontSize: "1rem",
+                  textDecoration: "none",
+                }}
+              >
+                artdev@gmail.com
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid item sx={{ marginBottom: ".5em", maxWidth: "20em" }}>
+              <TextField
+                variant="standard"
+                label="Name"
+                id="name"
+                fullWidth
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </Grid>
+            <Grid item sx={{ marginBottom: ".5em", maxWidth: "20em" }}>
+              <TextField
+                variant="standard"
+                label="Email"
+                id="email"
+                helperText={emailHelper}
+                error={emailHelper !== ""}
+                fullWidth
+                value={email}
+                onChange={onChange}
+                onBlur={setEmailTouched}
+              />
+            </Grid>
+            <Grid item sx={{ marginBottom: ".5em", maxWidth: "20em" }}>
+              <TextField
+                variant="standard"
+                label="Phone"
+                id="phone"
+                helperText={phoneHelper}
+                fullWidth
+                value={phone}
+                onChange={onChange}
+                onBlur={setPhoneTouched}
+                error={phoneHelper.length !== 0}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            style={{ width: "100%", maxWidth: "20em", marginTop: "5em" }}
+          >
+            <TextField
+              variant="standard"
+              multiline
+              fullWidth
+              rows={10}
+              value={message}
+              id={message}
+              onChange={(event) => setMessage(event.target.value)}
+            />
+          </Grid>
+          <Grid
+            item
+            container
+            justifyContent="center"
+            sx={{ marignLeft: "2em", marginRight: "2em" }}
+          >
+            <Grid item>
               <Button
                 variant="contained"
                 disabled={
@@ -202,11 +218,15 @@ const ContactUs = () => {
                   emailHelper.length !== 0 ||
                   phoneHelper.length !== 0
                 }
+                onClick={() => {
+                  setOpen(true);
+                }}
                 sx={{
                   ...theme.typography.estimate,
                   borderRadius: 50,
                   hieght: 80,
                   width: 205,
+
                   backgroundColor: theme.palette.secondary.main,
                   "&:hover": {
                     backgroundColor: theme.palette.secondary.light,
@@ -227,11 +247,142 @@ const ContactUs = () => {
         </Grid>
       </Grid>
 
+      {/* Dialog */}
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          sx: {
+            paddingTop: matchesXS ? "1em" : matchesMD ? "2em" : "5em",
+            paddingBottom: matchesXS ? "1em" : matchesMD ? "2em" : "5em",
+            paddingLeft: matchesXS
+              ? 0
+              : matchesSM
+              ? "1em"
+              : matchesMD
+              ? "5em"
+              : matchesLG
+              ? "10em"
+              : "20em",
+            paddingRight: matchesXS
+              ? 0
+              : matchesSM
+              ? "1em"
+              : matchesMD
+              ? "5em"
+              : matchesLG
+              ? "10em"
+              : "20em",
+          },
+        }}
+      >
+        <Grid container direction="column" alignItems="center">
+          <Grid item>
+            <Typography variant="h4" sx={{ marginBottom: "1em" }}>
+              Confirm message
+            </Typography>
+          </Grid>
+          <Grid item sx={{ marginBottom: ".5em", width: "100%" }}>
+            <TextField
+              variant="standard"
+              label="Name"
+              id="name"
+              fullWidth
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </Grid>
+          <Grid item sx={{ marginBottom: ".5em", width: "100%" }}>
+            <TextField
+              variant="standard"
+              label="Email"
+              id="email"
+              helperText={emailHelper}
+              error={emailHelper !== ""}
+              fullWidth
+              value={email}
+              onChange={onChange}
+              onBlur={setEmailTouched}
+            />
+          </Grid>
+          <Grid item sx={{ marginBottom: ".5em", width: "100%" }}>
+            <TextField
+              variant="standard"
+              label="Phone"
+              id="phone"
+              helperText={phoneHelper}
+              fullWidth
+              value={phone}
+              onChange={onChange}
+              onBlur={setPhoneTouched}
+              error={phoneHelper.length !== 0}
+            />
+          </Grid>
+
+          <Grid item sx={{ width: "100%", maxWidth: "20em", marginTop: "5em" }}>
+            <TextField
+              variant="standard"
+              multiline
+              fullWidth
+              rows={10}
+              value={message}
+              id={message}
+              onChange={(event) => setMessage(event.target.value)}
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          alignItems="center"
+          justifyContent="space-around"
+          sx={{ paddingTop: "2em", paddingBottom: "2em" }}
+        >
+          <Grid item>
+            <Button color="primary" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              disabled={
+                name.length === 0 ||
+                message.length === 0 ||
+                emailHelper.length !== 0 ||
+                phoneHelper.length !== 0
+              }
+              onClick={() => {
+                setOpen(false);
+              }}
+              sx={{
+                ...theme.typography.estimate,
+                borderRadius: 50,
+                hieght: 80,
+                width: 205,
+                backgroundColor: theme.palette.secondary.main,
+                "&:hover": {
+                  backgroundColor: theme.palette.secondary.light,
+                },
+                fontsize: "1.5rem",
+              }}
+            >
+              Send Message{" "}
+              <img
+                src={airplane}
+                alt="paper airplane"
+                style={{ marginLeft: "1em" }}
+              />
+            </Button>
+          </Grid>
+        </Grid>
+      </Dialog>
+
       <Grid
         item
         container
         alignItems="center"
-        justifyContent={matchesSM ? "center" : "space-around"}
+        justifyContent={matchesSM ? "center" : "flex-start"}
         // md={8}
         lg={8}
         xl={9}
@@ -248,21 +399,26 @@ const ContactUs = () => {
       >
         <Grid
           item
+          container
           sx={{
             color: theme.palette.primary.main,
             textAlign: matchesSM ? "center" : "inherit",
+            marginLeft: matchesMD ? 0 : "2em",
           }}
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-delay="100"
+          alignItems="center"
+          justifyContent={matchesMD ? "center" : "flex-start"}
         >
-          <Typography variant="h2">
-            Simple software.
-            <br /> Revolutionary Results.
-          </Typography>
-          <Typography variant="subtitle1" sx={{ color: "white" }}>
-            Take advantage of the 21st century
-          </Typography>
           <Grid item>
+            <Typography variant="h2">
+              Simple software.
+              <br /> Revolutionary Results.
+            </Typography>
+            <Typography variant="subtitle1" sx={{ color: "white" }}>
+              Take advantage of the 21st century
+            </Typography>
+
             <Button
               variant="outlined"
               component={Link}
@@ -280,27 +436,28 @@ const ContactUs = () => {
               />
             </Button>
           </Grid>
-        </Grid>
-        <Grid item data-aos="zoom-in">
-          <Button
-            variant="contained"
-            component={Link}
-            to="/estimate"
-            sx={{
-              ...theme.typography.estimate,
-              borderRadius: 50,
-              hieght: 80,
-              width: 205,
-              backgroundColor: theme.palette.secondary.main,
-              "&:hover": {
-                backgroundColor: theme.palette.secondary.light,
-              },
-              fontsize: "1.5rem",
-              marginTop: "2em",
-            }}
-          >
-            Free extimate
-          </Button>
+          <Grid item data-aos="zoom-in">
+            <Button
+              variant="contained"
+              component={Link}
+              to="/estimate"
+              sx={{
+                ...theme.typography.estimate,
+                borderRadius: 50,
+                hieght: 80,
+                width: 205,
+                backgroundColor: theme.palette.secondary.main,
+                "&:hover": {
+                  backgroundColor: theme.palette.secondary.light,
+                },
+                fontsize: "1.5rem",
+                marginLeft: matchesMD ? 0 : "2em",
+                marginTop: "2em",
+              }}
+            >
+              Free extimate
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

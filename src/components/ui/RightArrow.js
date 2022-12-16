@@ -1,5 +1,3 @@
-import { height } from "@mui/system";
-
 const RightArrow = ({ width, height, fill }) => {
   return (
     <svg

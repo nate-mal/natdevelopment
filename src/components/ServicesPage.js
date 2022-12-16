@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";

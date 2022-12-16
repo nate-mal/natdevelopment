@@ -1,4 +1,4 @@
-export default {
+const data = {
   v: "5.5.9",
   fr: 29.9700012207031,
   ip: 0,
@@ -2389,3 +2389,5 @@ export default {
   ],
   markers: [],
 };
+
+export default data;
