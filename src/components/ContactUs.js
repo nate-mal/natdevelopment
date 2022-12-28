@@ -1,14 +1,17 @@
 import { useTheme } from "@emotion/react";
 // import useMediaQuery from "@mui/material/useMediaQuery";
+import axios from "axios";
 import Grid from "@mui/material/Grid";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import {
   TextField,
   Typography,
   Button,
   useMediaQuery,
   Dialog,
-  DialogContent,
 } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 
 import background from "../assets/background.jpg";
@@ -17,7 +20,7 @@ import phoneIcon from "../assets/phone.svg";
 import emailIcon from "../assets/email.svg";
 import RightArrow from "./ui/RightArrow";
 import airplane from "../assets/send.svg";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const ContactUs = () => {
   const theme = useTheme();
@@ -35,7 +38,8 @@ const ContactUs = () => {
   const [phoneTouched, setPhoneTouched] = useState(false);
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState({ open: false });
   const onChange = useCallback(
     (event) => {
       let valid;
@@ -72,10 +76,52 @@ const ContactUs = () => {
     },
     [emailTouched, phoneTouched]
   );
+  const onConfirm = async () => {
+    setLoading(true);
+    axios
+      .get("https://us-central1-nat-development.cloudfunctions.net/sendMail", {
+        params: { name, email, phone, message },
+      })
+      .then((response) => {
+        console.log(response);
+        setLoading(false);
+        setName("");
+        setEmail("");
+        setEmailTouched(false);
+        setPhone("");
+        setPhoneTouched(false);
+        setMessage("");
+        setOpen(false);
+        setFeedback({
+          open: true,
+          severity: "success",
+          message: "Your message was sent succesfully",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+        setFeedback({
+          open: true,
+          severity: "error",
+          message: "Something went wrong, please try again!",
+        });
+      })
+      .finally(() => {
+        console.log("request fulfilled");
+      });
+  };
   useEffect(() => {
     if (emailTouched) onChange(emailTouched);
     if (phoneTouched) onChange(phoneTouched);
   }, [emailTouched, phoneTouched, onChange]);
+
+  const buttonContents = (
+    <React.Fragment>
+      Send Message
+      <img src={airplane} alt="paper airplane" style={{ marginLeft: "1em" }} />
+    </React.Fragment>
+  );
   return (
     <Grid container direction="row" sx={{ marginTop: "-2em" }}>
       <Grid
@@ -235,12 +281,7 @@ const ContactUs = () => {
                   marginTop: "2em",
                 }}
               >
-                Send Message{" "}
-                <img
-                  src={airplane}
-                  alt="paper airplane"
-                  style={{ marginLeft: "1em" }}
-                />
+                {buttonContents}
               </Button>
             </Grid>
           </Grid>
@@ -353,7 +394,7 @@ const ContactUs = () => {
                 phoneHelper.length !== 0
               }
               onClick={() => {
-                setOpen(false);
+                onConfirm();
               }}
               sx={{
                 ...theme.typography.estimate,
@@ -367,16 +408,27 @@ const ContactUs = () => {
                 fontsize: "1.5rem",
               }}
             >
-              Send Message{" "}
-              <img
-                src={airplane}
-                alt="paper airplane"
-                style={{ marginLeft: "1em" }}
-              />
+              {loading ? <CircularProgress /> : buttonContents}
             </Button>
           </Grid>
         </Grid>
       </Dialog>
+      {/* snackbar alet feedbak */}
+
+      <Snackbar
+        open={feedback.open}
+        autoHideDuration={6000}
+        onClose={() => setFeedback((prev) => ({ ...prev, open: false }))}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setFeedback((prev) => ({ ...prev, open: false }))}
+          severity={feedback.severity}
+          sx={{ width: "100%" }}
+        >
+          {feedback.message}
+        </Alert>
+      </Snackbar>
 
       <Grid
         item
