@@ -19,6 +19,7 @@ import WebsitesDevelopmentPage from "./WebsitesDevelopment";
 import RevolutionPage from "./RevolutionPage";
 import AboutUsPage from "./AboutUsPage";
 import ContactUs from "./ContactUs";
+import EstimatePage from "./EstimatePage";
 function App() {
   const options = useMemo(
     () => [
@@ -132,11 +133,7 @@ function App() {
               <Route exact path="/reviews" element={<div>Reviews Page</div>} />
               <Route exact path="/contact" element={<ContactUs />} />
               <Route exact path="/address" element={<div>Address Page</div>} />
-              <Route
-                exact
-                path="/estimate"
-                element={<div>Estimate Page</div>}
-              />
+              <Route exact path="/estimate" element={<EstimatePage />} />
             </Routes>
           </ScrollToTop>
           <Footer

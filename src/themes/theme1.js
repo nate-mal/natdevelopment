@@ -28,6 +28,11 @@ const theme = createTheme({
       textAlign: "center",
       fontSize: "3rem",
     },
+    h2: {
+      color: artBlue,
+      fontWeight: 500,
+      fontSize: "2.5rem",
+    },
 
     h3: {
       fontFamily: "Pacifico",
@@ -40,7 +45,15 @@ const theme = createTheme({
       color: artBlue,
       fontWeight: 700,
     },
+    h6: {
+      fontFamily: "Raleway",
+      color: artBlue,
+      fontWeight: 500,
+      lineHeight: 1,
+    },
+    caption: { color: artGrey, textAlign: "center" },
     subtitle1: { fontSize: "1.25rem", fontWeight: 300, color: artGrey },
+    body1: { color: artGrey },
     body2: { color: artGrey },
     tab: {
       fontFamily: "Raleway",

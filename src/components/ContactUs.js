@@ -243,6 +243,7 @@ const ContactUs = () => {
               variant="standard"
               multiline
               fullWidth
+              placeholder="Tell us more about your project"
               rows={10}
               value={message}
               id={message}
