@@ -45,22 +45,12 @@ function App() {
       {
         name: "About Us",
         link: "/about",
-        subs: [
-          { name: "About Us", link: "/about", index: 3 },
-          {
-            name: "Our team",
-            link: "/team",
-          },
-          { name: "What others tell about us", link: "/reviews" },
-        ],
+        // subs: [{ name: "About Us", link: "/about", index: 3 }],
       },
       {
         name: "Contact Us",
         link: "/contact",
-        subs: [
-          { name: "Contact Us", link: "/contact", index: 4 },
-          { name: "Address", link: "/address" },
-        ],
+        // subs: [{ name: "Contact Us", link: "/contact", index: 4 }],
       },
     ],
     []
@@ -129,10 +119,7 @@ function App() {
               />
               <Route exact path="/revolution" element={<RevolutionPage />} />
               <Route exact path="/about" element={<AboutUsPage />} />
-              <Route exact path="/team" element={<div>Team Page</div>} />
-              <Route exact path="/reviews" element={<div>Reviews Page</div>} />
               <Route exact path="/contact" element={<ContactUs />} />
-              <Route exact path="/address" element={<div>Address Page</div>} />
               <Route exact path="/estimate" element={<EstimatePage />} />
             </Routes>
           </ScrollToTop>
