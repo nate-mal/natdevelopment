@@ -23,39 +23,42 @@ import EstimatePage from "./EstimatePage";
 function App() {
   const options = useMemo(
     () => [
-      { name: "Home", link: "/" },
+      { name: "Home", link: "/natdevelopment" },
 
       {
         name: "Servicii",
-        link: "/services",
+        link: "/natdevelopment/services",
         subs: [
-          { name: "Servicii", link: "/services", index: 1 },
+          { name: "Servicii", link: "/natdevelopment/services", index: 1 },
           {
             name: "Custom Software Development",
-            link: "/customsoftware",
+            link: "/natdevelopment/customsoftware",
           },
-          { name: "IOS/Android App Development", link: "/mobileapps" },
-          { name: "Website Development", link: "/websites" },
+          {
+            name: "IOS/Android App Development",
+            link: "/natdevelopment/mobileapps",
+          },
+          { name: "Website Development", link: "/natdevelopment/websites" },
         ],
       },
       {
         name: "The Revolution",
-        link: "/revolution",
+        link: "/natdevelopment/revolution",
       },
       {
         name: "About Us",
-        link: "/about",
-        // subs: [{ name: "About Us", link: "/about", index: 3 }],
+        link: "/natdevelopment/about",
+        // subs: [{ name: "About Us", link: "/natdevelopment/about", index: 3 }],
       },
       {
         name: "Contact Us",
-        link: "/contact",
-        // subs: [{ name: "Contact Us", link: "/contact", index: 4 }],
+        link: "/natdevelopment/contact",
+        // subs: [{ name: "Contact Us", link: "/natdevelopment/contact", index: 4 }],
       },
     ],
     []
   );
-  const estimate = { name: "Free Estimate", link: "/estimate" };
+  const estimate = { name: "Free Estimate", link: "/natdevelopment/estimate" };
 
   const [activeValue, setActiveValue] = useState(0);
   const [activeSubValue, setActiveSubValue] = useState(null);
