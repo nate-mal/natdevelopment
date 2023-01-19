@@ -84,7 +84,7 @@ function App() {
           <ScrollToTop>
             <Routes>
               <Route
-                path="/"
+                path="/natdevelopment/"
                 element={
                   <LandingPage
                     setValue={setActiveValue}
@@ -94,7 +94,7 @@ function App() {
               />
               <Route
                 exact
-                path="/services"
+                path="/natdevelopment/services"
                 element={
                   <ServicesPage
                     setValue={setActiveValue}
@@ -104,23 +104,39 @@ function App() {
               />
               <Route
                 exact
-                path="/customsoftware"
+                path="/natdevelopment/customsoftware"
                 element={<CustomSoftwarePage />}
               />
               <Route
                 exact
-                path="/mobileapps"
+                path="/natdevelopment/mobileapps"
                 element={<MobileDevelopmentPage />}
               />
               <Route
                 exact
-                path="/websites"
+                path="/natdevelopment/websites"
                 element={<WebsitesDevelopmentPage />}
               />
-              <Route exact path="/revolution" element={<RevolutionPage />} />
-              <Route exact path="/about" element={<AboutUsPage />} />
-              <Route exact path="/contact" element={<ContactUs />} />
-              <Route exact path="/estimate" element={<EstimatePage />} />
+              <Route
+                exact
+                path="/natdevelopment/revolution"
+                element={<RevolutionPage />}
+              />
+              <Route
+                exact
+                path="/natdevelopment/about"
+                element={<AboutUsPage />}
+              />
+              <Route
+                exact
+                path="/natdevelopment/contact"
+                element={<ContactUs />}
+              />
+              <Route
+                exact
+                path="/natdevelopment/estimate"
+                element={<EstimatePage />}
+              />
             </Routes>
           </ScrollToTop>
           <Footer
