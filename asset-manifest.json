@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/natdevelopment/static/css/main.fc0706bd.css",
-    "main.js": "/natdevelopment/static/js/main.b98869d2.js",
+    "main.js": "/natdevelopment/static/js/main.c2aa0746.js",
     "static/media/infoBackground.svg": "/natdevelopment/static/media/infoBackground.47d3060d558832f906acb135e2f8a65c.svg",
     "static/media/background.jpg": "/natdevelopment/static/media/background.b8d469ccd0b929a8a363.jpg",
     "static/media/ecommerce.svg": "/natdevelopment/static/media/ecommerce.af6c04eddc5002f568994ae0544ad1ba.svg",
@@ -66,10 +66,10 @@
     "static/media/backArrowDisabled.svg": "/natdevelopment/static/media/backArrowDisabled.629a57c645bc889b5fa66c91c2bb60b1.svg",
     "static/media/backArrow.svg": "/natdevelopment/static/media/backArrow.7279a7663a15d77d71c72ab052f19d24.svg",
     "main.fc0706bd.css.map": "/natdevelopment/static/css/main.fc0706bd.css.map",
-    "main.b98869d2.js.map": "/natdevelopment/static/js/main.b98869d2.js.map"
+    "main.c2aa0746.js.map": "/natdevelopment/static/js/main.c2aa0746.js.map"
   },
   "entrypoints": [
     "static/css/main.fc0706bd.css",
-    "static/js/main.b98869d2.js"
+    "static/js/main.c2aa0746.js"
   ]
 }
